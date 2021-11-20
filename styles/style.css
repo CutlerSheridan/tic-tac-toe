@@ -1,0 +1,49 @@
+:root {
+    --board-space-size: 10rem;
+    font-size: 62.5%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+body {
+    height: 100%;
+    width: 100%;
+}
+
+/*--SIDEBAR START--*/
+/*--SIDEBAR END--*/
+
+/*--GAME BOARD START--*/
+.game-board {
+    --board-gap-size: 1rem;
+    width: calc(var(--board-space-size) * 3 + var(--board-gap-size) * 2);
+    margin: auto;
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    grid-gap: 1rem;
+    background: black;
+}
+/*--GAME BOARD END--*/
+
+/*--GAME SPACE START--*/
+.space {
+    width: var(--board-space-size);
+    height: var(--board-space-size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 5rem;
+    user-select: none;
+    white-space: pre-wrap;
+    background: red;
+}
+.space:hover {
+    background: darkred;
+}
+/*--GAME SPACE END--*/
+
+/*--FOOTER START--*/
+/*--FOOTER END--*/
