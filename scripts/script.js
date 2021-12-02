@@ -5,11 +5,16 @@ const gameParts = (() => {
         ["_", "_", "_"]
     ];
     const clearBoard = () => {
-        for (let i = 0; i < 3; i++) {
-            for (let n = 0; n < 3; n++) {
-                board[i][n] = "_";
-            }
-        }
+        // for (let i = 0; i < 3; i++) {
+        //     for (let n = 0; n < 3; n++) {
+        //         board[i][n] = "_";
+        //     }
+        // }
+        const emptyBoard = (row, col) => {
+            board[row][col] = "_";
+        };
+        nestedForLoop(emptyBoard);
+
         displayController.clearBoardDisplay();
     };
     let gamesTied = 0;
@@ -73,11 +78,7 @@ const displayController = (() => {
 const gameFlow = (() => {
     const _p1 = gameParts.Player("Player 1", true, "X");
     const _p2 = gameParts.Player("Player 2", true, "O");
-    const evaluate = (board, targetMark) => {
-        // const oppoMark = (targetMark === p1.mark ? p2.mark : p1.mark);
-        // return -10, 0, or 10
-        // should this be in gameParts?  Part of gameParts.board?
-    };
+    
     const setupGame = (form) => {
         // assign info from form to p1 and p2
         gameParts.clearBoard();
@@ -89,12 +90,8 @@ const gameFlow = (() => {
         let currentPlayer;
         let mark;
         const _startTurn = () => {
-            console.log("p1 turn start of _startTurn", _isP1Turn);
-
             currentPlayer = _isP1Turn ? _p1 : _p2;
-            console.log("mark pre-assign", mark);
             mark = currentPlayer.mark;
-            console.log("mark post-assign", mark);
             if (!currentPlayer.isHuman) {
                 currentPlayer.findBestMove(gameParts.board);
                 _endTurn();
@@ -114,25 +111,88 @@ const gameFlow = (() => {
                 }
                 currentPlayer.makeMove(move);
             }
-            const result = evaluate(gameParts.board, mark);
-            if (result >= 0) {
-                _endGame(result === 0 ? null : currentPlayer);
+            displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
+            const result = evaluate(mark);
+            if (result > 0 || result < 0) {
+                _endGame(currentPlayer);
+                return;
+            } else if (!_movesAreLeft()) {
+                _endGame(null);
                 return;
             }
-            console.log("p1 turn pre-switch", _isP1Turn);
-            console.log("mark in _endTurn", mark);
             _isP1Turn = !_isP1Turn;
-            console.log("p1 turn post-switch", _isP1Turn);
-            displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
             _startTurn();
         }
         _startTurn();
     };
     const _endGame = (winner) => {
+        if (winner) {
+            console.log(`${winner.name} wins!`);
+        } else {
+            console.log("Tie!");
+        }
         // increment games won of player or tied
         // call showGameOutcome
+    };
+
+    const evaluate = (targetMark) => {
+        const oppoMark = targetMark === _p1.mark ? _p2.mark : _p1.mark;
+        for (let row = 0; row < 3; row++) {
+            if (gameParts.board[row][0] === gameParts.board[row][1] &&
+                gameParts.board[row][1] === gameParts.board[row][2]) {
+                    if (gameParts.board[row][0] === targetMark) {
+                        return 10;
+                    } else if (gameParts.board[row][0] === oppoMark) {
+                        return -10;
+                    }
+                }
+        }
+        for (let col = 0; col < 3; col++) {
+            if (gameParts.board[0][col] === gameParts.board[1][col] &&
+                gameParts.board[1][col] === gameParts.board[2][col]) {
+                    if (gameParts.board[0][col] === targetMark) {
+                        return 10;
+                    } else if (gameParts.board[0][col] === oppoMark) {
+                        return -10;
+                    }
+                }
+        }
+        if (gameParts.board[0][0] === gameParts.board[1][1] &&
+            gameParts.board[1][1] === gameParts.board[2][2]) {
+                if (gameParts.board[1][1] === targetMark) {
+                    return 10;
+                } else if (gameParts.board[1][1] === oppoMark) {
+                    return -10;
+                }
+            }
+        if (gameParts.board[0][2] === gameParts.board[1][1] &&
+            gameParts.board[1][1] === gameParts.board[2][0]) {
+                if (gameParts.board[1][1] === targetMark) {
+                    return 10;
+                } else if (gameParts.board[1][1] === oppoMark) {
+                    return -10;
+                }
+            }
+        return 0;
+    };
+    const _movesAreLeft = () => {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                if (gameParts.board[row][col] === "_") {
+                    return true;
+                }
+            }
+        }
+        return false;
     };
     setupGame();
     return {setupGame, evaluate};
 })();
 
+function nestedForLoop(func) {
+    for (let i = 0; i < 3; i++) {
+        for (let n = 0; n < 3; n++) {
+            func(i, n);
+        }
+    }
+}
