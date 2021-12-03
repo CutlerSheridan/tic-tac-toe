@@ -86,56 +86,56 @@ const displayController = (() => {
 const gameFlow = (() => {
     const _p1 = gameParts.Player("Player 1", true, "X");
     const _p2 = gameParts.Player("Player 2", true, "O");
+
+    let _isP1Turn;
+    let currentPlayer;
+    let mark;
     
     const setupGame = (form) => {
         // assign info from form to p1 and p2
         // also maybe put the form somewhere else in this module so this can be 
+        _isP1Turn = true;
+        currentPlayer = _p1;
+        mark = _p1.mark;
         gameParts.clearBoard();
         // if reset checked, both gamesWon + gameParts.gamesTied = 0
-        _runGame();
-    };
-    const _runGame = () => {
-        let _isP1Turn = true;
-        let currentPlayer = _p1;
-        let mark = _p1.mark;
-
-        const _startTurn = () => {
-            displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
-            currentPlayer = _isP1Turn ? _p1 : _p2;
-            mark = currentPlayer.mark;
-            if (!currentPlayer.isHuman) {
-                currentPlayer.findBestMove(gameParts.board);
-                _endTurn();
-            } else {
-                displayController.spaces.forEach(space => space.addEventListener("click", _endTurn));
-            }
-        };
-        const _endTurn = (e) => {
-            if (e) {
-                const boardIndex = e.target.dataset.boardLoc.split(",");
-                const move = {
-                    row: boardIndex[0],
-                    col: boardIndex[1]
-                };
-                if (gameParts.board[move.row][move.col] !== "_") {
-                    return;
-                }
-                currentPlayer.makeMove(move);
-            }
-            displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
-            const result = evaluate(mark);
-            if (result > 0 || result < 0) {
-                _endGame(currentPlayer);
-                return;
-            } else if (!_movesAreLeft()) {
-                _endGame(null);
-                return;
-            }
-            _isP1Turn = !_isP1Turn;
-            _startTurn();
-        }
         _startTurn();
     };
+    const _startTurn = () => {
+        displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
+        currentPlayer = _isP1Turn ? _p1 : _p2;
+        mark = currentPlayer.mark;
+        if (!currentPlayer.isHuman) {
+            currentPlayer.findBestMove(gameParts.board);
+            _endTurn();
+        } else {
+            displayController.spaces.forEach(space => space.addEventListener("click", _endTurn));
+        }
+    };
+    const _endTurn = (e) => {
+        if (e) {
+            const boardIndex = e.target.dataset.boardLoc.split(",");
+            const move = {
+                row: boardIndex[0],
+                col: boardIndex[1]
+            };
+            if (gameParts.board[move.row][move.col] !== "_") {
+                return;
+            }
+            currentPlayer.makeMove(move);
+        }
+        displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
+        const result = evaluate(mark);
+        if (result > 0 || result < 0) {
+            _endGame(currentPlayer);
+            return;
+        } else if (!_movesAreLeft()) {
+            _endGame(null);
+            return;
+        }
+        _isP1Turn = !_isP1Turn;
+        _startTurn();
+    }
     const _endGame = (winner) => {
         if (winner) {
             console.log(`${winner.name} wins!`);
@@ -197,8 +197,8 @@ const gameFlow = (() => {
         }
         return false;
     };
-    // const _resetMatchButton = document.getElementById("reset-match");
-    // _resetMatchButton.addEventListener("click", setupGame);
+    const _resetMatchButton = document.getElementById("reset-match");
+    _resetMatchButton.addEventListener("click", setupGame);
     
     setupGame();
     return {setupGame, evaluate};
