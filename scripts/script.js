@@ -23,6 +23,13 @@ const gameParts = (() => {
             let row, col;
             return {row, col};
         };
+        const makeMove = (move) => {
+            board[move.row][move.col] = mark;
+            console.log({
+                board
+            });
+            displayController.displayMark(move, mark);
+        };
         const findBestMove = (board) => {
             // *** "player" parameter prob. unnecessary now that it's in Player()
             // replace empty space w/ player.mark
@@ -32,13 +39,6 @@ const gameParts = (() => {
         const _minimax = (board, depth, isMax, alpha, beta) => {
             // gameFlow.evaluate();
             // add logic here
-        };
-        const makeMove = (move) => {
-            board[move.row][move.col] = mark;
-            console.log({
-                board
-            });
-            displayController.displayMark(move, mark);
         };
         return {name, isHuman, mark, gamesWon, findBestMove, makeMove};
     };
@@ -62,7 +62,15 @@ const displayController = (() => {
     })();
     const spaces = document.querySelectorAll(".space");
     const clearBoardDisplay = () => {
-        spaces.forEach(space => space.textContent = " ");
+        spaces.forEach(space => {
+            space.textContent = " ";
+            space.ontouchstart = function() {
+                this.style.backgroundColor = "darkred";
+            }
+            space.ontouchend = function() {
+                this.style.backgroundColor = "red";
+            }
+        });
     }
     // func called startScreen() 
         // _editForm(true);
@@ -81,15 +89,18 @@ const gameFlow = (() => {
     
     const setupGame = (form) => {
         // assign info from form to p1 and p2
+        // also maybe put the form somewhere else in this module so this can be 
         gameParts.clearBoard();
         // if reset checked, both gamesWon + gameParts.gamesTied = 0
         _runGame();
     };
     const _runGame = () => {
         let _isP1Turn = true;
-        let currentPlayer;
-        let mark;
+        let currentPlayer = _p1;
+        let mark = _p1.mark;
+
         const _startTurn = () => {
+            displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
             currentPlayer = _isP1Turn ? _p1 : _p2;
             mark = currentPlayer.mark;
             if (!currentPlayer.isHuman) {
@@ -128,10 +139,11 @@ const gameFlow = (() => {
     const _endGame = (winner) => {
         if (winner) {
             console.log(`${winner.name} wins!`);
+            winner.gamesWon++;
         } else {
             console.log("Tie!");
+            gameParts.gamesTied++;
         }
-        // increment games won of player or tied
         // call showGameOutcome
     };
 
@@ -185,6 +197,9 @@ const gameFlow = (() => {
         }
         return false;
     };
+    // const _resetMatchButton = document.getElementById("reset-match");
+    // _resetMatchButton.addEventListener("click", setupGame);
+    
     setupGame();
     return {setupGame, evaluate};
 })();

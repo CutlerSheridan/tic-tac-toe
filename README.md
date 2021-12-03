@@ -3,24 +3,36 @@
 In progress.
 
 #### TO-DO NEXT
-- add ability to start new game
+- break up _runGame() into discrete funcs so Reset Match can interrupt the game and it doesn't try running _runGame() again simultaneously
+- make Reset Match button work
 #### TO-DO LATER
 ##### Features
+- add ability to start new game
 - add ability to input name, et cetera
-- add display for name, et cetera
 - add computer player w/ AI that knows best move to make next
 - add "easy" option that randomly selects next move
 ##### Behavior
 - remember games won/tied upon refresh
 - create a line through the winning sequence
+- mobile; don't allow ios tapping after game is complete
+    - should it still highlight if the tapped square is not empty? or different color maybe
 ##### Style
 - choose fonts
 - style grid
--if clicked, indent and leave marker; if space is taken, indent as current marker and leave as-is
+- if clicked, indent and leave marker; if space is taken, indent as current marker and leave as-is
+- add italicized indication of whether player is human- or computer-controlled
+- mobile; disable double tap to zoom
+- add a visual indication as to whose turn it is?  maybe just if both players are human?
+- should background of board be transparent?  I mean probably, right?
+- make game pieces unselectable
 ##### Other
 - decide if that nestedForLoop function is worthwhile (look through other instances of where i'll need to use it)
 
 #### DONE
+- *v0.1.1*
+- make mobile buttons respond appropriately
+- add display for name, et cetera
+- add Reset Match button
 - *v0.1.0*
 - add ability to win a game
 - add ability to tie a game

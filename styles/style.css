@@ -14,6 +14,22 @@ body {
 }
 
 /*--SIDEBAR START--*/
+header {
+    margin: 2rem 0;
+}
+.players-container {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+hr {
+    margin: 1rem 0;
+}
+.game-info-wrapper {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2rem;
+}
 /*--SIDEBAR END--*/
 
 /*--GAME BOARD START--*/
@@ -25,6 +41,7 @@ body {
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     grid-gap: 1rem;
     background: black;
+    user-select: none;
 }
 /*--GAME BOARD END--*/
 
@@ -36,13 +53,17 @@ body {
     justify-content: center;
     align-items: center;
     font-size: 5rem;
-    user-select: none;
     white-space: pre-wrap;
     background: red;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
-.space:hover {
-    background: darkred;
+@media (hover: hover) {
+    .space:hover {
+        background: darkred;
+    }
 }
+
 /*--GAME SPACE END--*/
 
 /*--FOOTER START--*/
