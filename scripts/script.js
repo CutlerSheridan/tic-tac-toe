@@ -18,6 +18,7 @@ const gameParts = (() => {
         displayController.clearBoardDisplay();
     };
     let gamesTied = 0;
+    let totalGames = 0;
     const Player = (name, isHuman, mark, gamesWon = 0) => {
         const _Move = () => {
             let row, col;
@@ -42,7 +43,7 @@ const gameParts = (() => {
         };
         return {name, isHuman, mark, gamesWon, findBestMove, makeMove};
     };
-    return {board, clearBoard, gamesTied, Player};
+    return {board, clearBoard, gamesTied, totalGames, Player};
 })();
 
 const displayController = (() => {
@@ -72,6 +73,16 @@ const displayController = (() => {
             }
         });
     }
+    const updateInfoDisplay = (playerArray) => {
+        for (let i = 1; i < 3; i++) {
+            const p = playerArray[i - 1];
+            document.getElementById(`p${i}-name`).textContent = p.name;
+            document.getElementById(`p${i}-type`).textContent = p.isHuman ? "Human" : "Computer";
+            document.getElementById(`p${i}-score`).textContent = p.gamesWon;
+            document.getElementById("games-tied-num").textContent = gameParts.gamesTied;
+            document.getElementById("total-games-num").textContent = gameParts.totalGames;
+        }
+    }
     // func called startScreen() 
         // _editForm(true);
     // func called hoverBehavoir IF i don't just highlight squares w/ CSS
@@ -80,7 +91,7 @@ const displayController = (() => {
         const space = document.querySelector(`.space[data-board-loc="${move.row},${move.col}"`);
         space.textContent = mark;
     }
-    return {clearBoardDisplay, spaces, displayMark};
+    return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark};
 })();
 
 const gameFlow = (() => {
@@ -94,9 +105,11 @@ const gameFlow = (() => {
     const setupGame = (form) => {
         // assign info from form to p1 and p2
         // also maybe put the form somewhere else in this module so this can be 
+        displayController.updateInfoDisplay( [_p1, _p2] );
         _isP1Turn = true;
         currentPlayer = _p1;
         mark = _p1.mark;
+        _resetMatchButton.textContent = "Reset match"
         gameParts.clearBoard();
         // if reset checked, both gamesWon + gameParts.gamesTied = 0
         _startTurn();
@@ -144,6 +157,9 @@ const gameFlow = (() => {
             console.log("Tie!");
             gameParts.gamesTied++;
         }
+        gameParts.totalGames++;
+        _resetMatchButton.textContent = "Next match";
+        displayController.updateInfoDisplay( [_p1, _p2] );
         // call showGameOutcome
     };
 

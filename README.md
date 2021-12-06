@@ -6,7 +6,6 @@ In progress.
 - add ability to reset all games
 #### TO-DO LATER
 ##### Features
-- add ability to start new game
 - add ability to input name, et cetera
 - add computer player w/ AI that knows best move to make next
 - add "easy" option that randomly selects next move
@@ -28,6 +27,9 @@ In progress.
 - decide if that nestedForLoop function is worthwhile (look through other instances of where i'll need to use it)
 
 #### DONE
+- *v0.1.3*
+- Make Reset Match button change to Next Match once the game is over; change back once next one starts
+- make info panel display accurate info
 - *v0.1.2*
 - break up _runGame() into discrete funcs so Reset Match can interrupt the game and it doesn't try running _runGame() again simultaneously
 - make Reset Match button work

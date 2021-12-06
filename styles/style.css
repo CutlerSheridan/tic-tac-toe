@@ -30,6 +30,9 @@ hr {
     justify-content: space-around;
     font-size: 2rem;
 }
+.info-detail {
+    color: red;
+}
 /*--SIDEBAR END--*/
 
 /*--GAME BOARD START--*/
