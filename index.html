@@ -9,23 +9,26 @@
 <header>
     <div class="players-container">
         <div class="player-info-wrapper">
-            <div class="player-name">p1 name: <span class="info-detail" id="p1-name"></span></div>
-            <div class="player-type">p1 player type: <span class="info-detail" id="p1-type"></span></div>
-            <div class="player-score">p1 games won: <span class="info-detail" id="p1-score"></span></div>
+            <div class="info-item player-info player-name">p1 name: <span class="info-detail" id="p1-name"></span></div>
+            <div class="info-item player-info player-type">p1 player type: <span class="info-detail" id="p1-type"></span></div>
+            <div class="info-item player-info player-score">p1 games won: <span class="info-detail" id="p1-score"></span></div>
         </div>
         
         <div class="player-info-wrapper">
-            <div class="player-name">p2 name: <span class="info-detail" id="p2-name"></span></div>
-            <div class="player-type" >p2 player type: <span class="info-detail" id="p2-type"></span></div>
-            <div class="player-score">p2 games won: <span class="info-detail" id="p2-score"></span></div>
+            <div class="info-item player-info player-name">p2 name: <span class="info-detail" id="p2-name"></span></div>
+            <div class="info-item player-info player-type" >p2 player type: <span class="info-detail" id="p2-type"></span></div>
+            <div class="info-item player-info player-score">p2 games won: <span class="info-detail" id="p2-score"></span></div>
         </div>
     </div>
     <hr>
     <div class="game-info-wrapper">
-        <div class="games-tied">games tied: <span class="info-detail" id="games-tied-num"></span></div>
-        <div class="total-games">total games: <span class="info-detail" id="total-games-num"></span></div>
+        <div class="info-item games-tied">games tied: <span class="info-detail" id="games-tied-num"></span></div>
+        <div class="info-item total-games">total games: <span class="info-detail" id="total-games-num"></span></div>
     </div>
-    <button id="reset-match">Reset match</button>
+    <div class="buttons-wrapper">
+        <button id="reset-match">Reset match</button>
+        <button id="clear-all-games">Clear all games</button>
+    </div>
 </header>
 
 <body>

@@ -16,22 +16,50 @@ body {
 /*--SIDEBAR START--*/
 header {
     margin: 2rem 0;
+    font-size: 1.2rem;
 }
 .players-container {
     display: flex;
     justify-content: space-around;
-    font-size: 2rem;
 }
 hr {
     margin: 1rem 0;
 }
+.player-info-wrapper {
+    border: 1px solid black;
+}
 .game-info-wrapper {
     display: flex;
     justify-content: space-around;
-    font-size: 2rem;
+}
+.info-item {
+    width: 18rem;
+    height: 3rem;
+    line-height: 3rem;
+    text-align: justify;
+    background: lawngreen;
+}
+/* this is a hack to justify a single line */
+.info-item::after {
+    content: "";
+    display: inline-block;
+    width: 100%;
 }
 .info-detail {
+    width: 10rem;
+    display: inline-block;
+    text-align: center;
+    font-size: 1.5rem;
     color: red;
+    background: lightgreen;
+}
+.buttons-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+}
+button {
+    font-size: inherit;
 }
 /*--SIDEBAR END--*/
 

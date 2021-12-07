@@ -3,30 +3,39 @@
 In progress.
 
 #### TO-DO NEXT
-- add ability to reset all games
+- add ability to edit name, et cetera
+- change color of winning row/col or winning marks
 #### TO-DO LATER
 ##### Features
-- add ability to input name, et cetera
-- add computer player w/ AI that knows best move to make next
-- add "easy" option that randomly selects next move
+- add hard AI that knows best move to make next
+- add medium AI that only checks for two marks in a row, else does random
 ##### Behavior
 - remember games won/tied upon refresh
-- create a line through the winning sequence
 - mobile; don't allow ios tapping after game is complete
     - should it still highlight if the tapped square is not empty? or different color maybe
 ##### Style
 - choose fonts
 - style grid
+- should p1 and p2 groups go to the left and right on desktop, top and bottom on mobile?
 - if clicked, indent and leave marker; if space is taken, indent as current marker and leave as-is
-- add italicized indication of whether player is human- or computer-controlled
+- italicize indication of whether player is human- or computer-controlled
 - mobile; disable double tap to zoom
 - add a visual indication as to whose turn it is?  maybe just if both players are human?
 - should background of board be transparent?  I mean probably, right?
+- create a line through the winning sequence?
 - make game pieces unselectable
+- handle long names
 ##### Other
 - decide if that nestedForLoop function is worthwhile (look through other instances of where i'll need to use it)
+##### Maybe
 
 #### DONE
+- *v0.2.0*
+- get info-items to justify
+- add computer player w/ "easy" AI
+- add difficulty indicator in info panel
+- *v0.1.4*
+- add ability to reset all games
 - *v0.1.3*
 - Make Reset Match button change to Next Match once the game is over; change back once next one starts
 - make info panel display accurate info

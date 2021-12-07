@@ -19,7 +19,7 @@ const gameParts = (() => {
     };
     let gamesTied = 0;
     let totalGames = 0;
-    const Player = (name, isHuman, mark, gamesWon = 0) => {
+    const Player = (name, isHuman, mark, difficulty, gamesWon = 0) => {
         const _Move = () => {
             let row, col;
             return {row, col};
@@ -31,7 +31,18 @@ const gameParts = (() => {
             });
             displayController.displayMark(move, mark);
         };
-        const findBestMove = (board) => {
+        const findRandomMove = () => {
+            let move = {
+                row: null,
+                col: null
+            };
+            do {
+                move.row = Math.floor(Math.random() * 3);
+                move.col = Math.floor(Math.random() * 3);
+            } while (board[move.row][move.col] !== "_");
+            makeMove(move);
+        }
+        const findBestMove = () => {
             // *** "player" parameter prob. unnecessary now that it's in Player()
             // replace empty space w/ player.mark
             // call _minimax();
@@ -41,7 +52,7 @@ const gameParts = (() => {
             // gameFlow.evaluate();
             // add logic here
         };
-        return {name, isHuman, mark, gamesWon, findBestMove, makeMove};
+        return {name, isHuman, mark, difficulty, gamesWon, findRandomMove, findBestMove, makeMove};
     };
     return {board, clearBoard, gamesTied, totalGames, Player};
 })();
@@ -77,7 +88,7 @@ const displayController = (() => {
         for (let i = 1; i < 3; i++) {
             const p = playerArray[i - 1];
             document.getElementById(`p${i}-name`).textContent = p.name;
-            document.getElementById(`p${i}-type`).textContent = p.isHuman ? "Human" : "Computer";
+            document.getElementById(`p${i}-type`).textContent = p.isHuman ? "Human" : `Comp. (${p.difficulty})`;
             document.getElementById(`p${i}-score`).textContent = p.gamesWon;
             document.getElementById("games-tied-num").textContent = gameParts.gamesTied;
             document.getElementById("total-games-num").textContent = gameParts.totalGames;
@@ -96,7 +107,7 @@ const displayController = (() => {
 
 const gameFlow = (() => {
     const _p1 = gameParts.Player("Player 1", true, "X");
-    const _p2 = gameParts.Player("Player 2", true, "O");
+    const _p2 = gameParts.Player("Player 2", false, "O", "easy");
 
     let _isP1Turn;
     let currentPlayer;
@@ -119,8 +130,15 @@ const gameFlow = (() => {
         currentPlayer = _isP1Turn ? _p1 : _p2;
         mark = currentPlayer.mark;
         if (!currentPlayer.isHuman) {
-            currentPlayer.findBestMove(gameParts.board);
-            _endTurn();
+            setTimeout(() => {
+                if (currentPlayer.difficulty === "easy") {
+                    currentPlayer.findRandomMove();
+                }
+                else if (currentPlayer.difficulty === "hard") {
+                    currentPlayer.findBestMove();
+                }
+                _endTurn();
+            }, 250);
         } else {
             displayController.spaces.forEach(space => space.addEventListener("click", _endTurn));
         }
@@ -213,8 +231,17 @@ const gameFlow = (() => {
         }
         return false;
     };
+    const _clearAllGames = () => {
+        _p1.gamesWon = 0;
+        _p2.gamesWon = 0;
+        gameParts.gamesTied = 0;
+        gameParts.totalGames = 0;
+        setupGame();
+    };
     const _resetMatchButton = document.getElementById("reset-match");
     _resetMatchButton.addEventListener("click", setupGame);
+    const _clearAllGamesButton = document.getElementById("clear-all-games");
+    _clearAllGamesButton.addEventListener("click", _clearAllGames);
     
     setupGame();
     return {setupGame, evaluate};
