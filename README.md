@@ -3,8 +3,6 @@
 In progress.
 
 #### TO-DO NEXT
-- currently setting the specific color to revert to after new match for winning highlighted row/col
-- change color of winning row/col or winning marks
 - add ability to edit name, et cetera
 #### TO-DO LATER
 ##### Features
@@ -31,8 +29,10 @@ In progress.
 ##### Maybe
 
 #### DONE
+- *v0.2.2*
+- change color of winning row/col/diag streak (or winning marks?) even if multiple streaks
 - *v0.2.1*
-- add _highlightSquare() and unhighlightAll()
+- add _highlightSquare() and unhighlightAll(), set the stage for highlighting winners
 - *v0.2.0*
 - get info-items to justify
 - add computer player w/ "easy" AI

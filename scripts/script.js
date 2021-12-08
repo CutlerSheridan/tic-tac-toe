@@ -103,13 +103,31 @@ const displayController = (() => {
         space.textContent = mark;
     }
 
-    const highlightWinner = (winningStreaks = [{row: false, col: false, diag: false}]) => {
+    const highlightWinner = (winningStreaks = {row: false, col: false, diag: false}) => {
         console.log("reaches highlightWinner()");
-        if (typeof winningStreaks[0].row === "number") {
-            for (let i = 0; i < 3; i++) {
-                _highlightSquare({row: winningStreaks[0].row, col: i});
+            if (typeof winningStreaks.row === "number") {
+                for (let i = 0; i < 3; i++) {
+                    _highlightSquare({row: winningStreaks.row, col: i});
+                }
             }
-        }
+            if (typeof winningStreaks.col === "number") {
+                for (let i = 0; i < 3; i++) {
+                    _highlightSquare({row: i, col: winningStreaks.col});
+                }
+            }
+            if (typeof winningStreaks.diag === "number") {
+                if (winningStreaks.diag === -1 || winningStreaks.diag === 0) {
+                    for (let i = 0; i < 3; i++) {
+                        _highlightSquare({row: i, col: i});
+                    }
+                }
+                if (winningStreaks.diag === 1 || winningStreaks.diag === 0) {
+                    for (let i = 0; i < 3; i++) {
+                        _highlightSquare({row: (5 - i) % 3, col: i});
+                    }
+                }
+            }
+
     }
     const _highlightSquare = (move) => {
         const square = document.querySelector(`.space[data-board-loc="${move.row},${move.col}"]`);
@@ -131,6 +149,7 @@ const gameFlow = (() => {
     let _isP1Turn;
     let currentPlayer;
     let mark;
+    let _winningStreaks = {row: false, col: false, diag: false};
     
     const setupGame = (form) => {
         // assign info from form to p1 and p2
@@ -191,6 +210,7 @@ const gameFlow = (() => {
         if (winner) {
             console.log(`${winner.name} wins!`);
             winner.gamesWon++;
+            displayController.highlightWinner(_findWinningStreaks());
         } else {
             console.log("Tie!");
             gameParts.gamesTied++;
@@ -198,50 +218,83 @@ const gameFlow = (() => {
         gameParts.totalGames++;
         _resetMatchButton.textContent = "Next match";
         displayController.updateInfoDisplay( [_p1, _p2] );
-        displayController.highlightWinner([{row: 0}]);
         // call showGameOutcome
     };
 
     const evaluate = (targetMark) => {
         const oppoMark = targetMark === _p1.mark ? _p2.mark : _p1.mark;
+        const b = gameParts.board;
         for (let row = 0; row < 3; row++) {
-            if (gameParts.board[row][0] === gameParts.board[row][1] &&
-                gameParts.board[row][1] === gameParts.board[row][2]) {
-                    if (gameParts.board[row][0] === targetMark) {
+            if (b[row][0] === b[row][1] && b[row][1] === b[row][2]) {
+                    if (b[row][0] === targetMark) {
                         return 10;
-                    } else if (gameParts.board[row][0] === oppoMark) {
+                    } else if (b[row][0] === oppoMark) {
                         return -10;
                     }
                 }
         }
         for (let col = 0; col < 3; col++) {
-            if (gameParts.board[0][col] === gameParts.board[1][col] &&
-                gameParts.board[1][col] === gameParts.board[2][col]) {
-                    if (gameParts.board[0][col] === targetMark) {
+            if (b[0][col] === b[1][col] && b[1][col] === b[2][col]) {
+                    if (b[0][col] === targetMark) {
                         return 10;
-                    } else if (gameParts.board[0][col] === oppoMark) {
+                    } else if (b[0][col] === oppoMark) {
                         return -10;
                     }
                 }
         }
-        if (gameParts.board[0][0] === gameParts.board[1][1] &&
-            gameParts.board[1][1] === gameParts.board[2][2]) {
-                if (gameParts.board[1][1] === targetMark) {
+        if (b[0][0] === b[1][1] && b[1][1] === b[2][2]) {
+                if (b[1][1] === targetMark) {
                     return 10;
-                } else if (gameParts.board[1][1] === oppoMark) {
+                } else if (b[1][1] === oppoMark) {
                     return -10;
                 }
             }
-        if (gameParts.board[0][2] === gameParts.board[1][1] &&
-            gameParts.board[1][1] === gameParts.board[2][0]) {
-                if (gameParts.board[1][1] === targetMark) {
+        if (b[0][2] === b[1][1] && b[1][1] === b[2][0]) {
+                if (b[1][1] === targetMark) {
                     return 10;
-                } else if (gameParts.board[1][1] === oppoMark) {
+                } else if (b[1][1] === oppoMark) {
                     return -10;
                 }
             }
         return 0;
     };
+    const _findWinningStreaks = () => {
+        const b = gameParts.board;
+        let streaks = {
+            row: false,
+            col: false,
+            diag: false
+        };
+        for (let row = 0; row < 3; row++) {
+            if (b[row][0] === "_") {
+                continue;
+            }
+            if (b[row][0] === b[row][1] && b[row][1] === b[row][2]) {
+                streaks.row = row;
+            }
+        }
+        for (let col = 0; col < 3; col++) {
+            if (b[0][col] === "_") {
+                continue;
+            }
+            if (b[0][col] === b[1][col] && b[1][col] === b[2][col]) {
+                streaks.col = col;
+            }
+        }
+        if (b[1][1] !== "_") {
+            if (b[0][0] === b[1][1] && b[1][1] === b[2][2]) {
+                streaks.diag = -1;
+            }
+            if (b[0][2] === b[1][1] && b[1][1] === b[2][0]) {
+                if (streaks.diag === -1) {
+                    streaks.diag = 0;
+                } else {
+                    streaks.diag = 1;
+                }
+            }
+        }
+        return streaks;
+    }
     const _movesAreLeft = () => {
         for (let row = 0; row < 3; row++) {
             for (let col = 0; col < 3; col++) {

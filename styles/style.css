@@ -89,7 +89,7 @@ button {
     background: var(--clr-pri);
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    transition: all 1s;
+    transition: all .2s;
 }
 @media (hover: hover) {
     .space:hover {
