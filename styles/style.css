@@ -1,5 +1,6 @@
 :root {
     --board-space-size: 10rem;
+    --clr-pri: red;
     font-size: 62.5%;
 }
 * {
@@ -85,9 +86,10 @@ button {
     align-items: center;
     font-size: 5rem;
     white-space: pre-wrap;
-    background: red;
+    background: var(--clr-pri);
     user-select: none;
     -webkit-tap-highlight-color: transparent;
+    transition: all 1s;
 }
 @media (hover: hover) {
     .space:hover {

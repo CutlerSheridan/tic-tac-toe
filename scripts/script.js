@@ -102,7 +102,26 @@ const displayController = (() => {
         const space = document.querySelector(`.space[data-board-loc="${move.row},${move.col}"`);
         space.textContent = mark;
     }
-    return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark};
+
+    const highlightWinner = (winningStreaks = [{row: false, col: false, diag: false}]) => {
+        console.log("reaches highlightWinner()");
+        if (typeof winningStreaks[0].row === "number") {
+            for (let i = 0; i < 3; i++) {
+                _highlightSquare({row: winningStreaks[0].row, col: i});
+            }
+        }
+    }
+    const _highlightSquare = (move) => {
+        const square = document.querySelector(`.space[data-board-loc="${move.row},${move.col}"]`);
+        square.style.background = "darkgreen";
+        console.log("reaches highlightWinner() > _highlightSquare");
+    }
+    const unhighlightAll = () => {
+        const root = document.querySelector(":root");
+        const defaultColor = root.style.getPropertyValue("--clr-pri");
+        spaces.forEach(space => space.style.background = defaultColor);
+    }
+    return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark, highlightWinner, unhighlightAll};
 })();
 
 const gameFlow = (() => {
@@ -117,6 +136,7 @@ const gameFlow = (() => {
         // assign info from form to p1 and p2
         // also maybe put the form somewhere else in this module so this can be 
         displayController.updateInfoDisplay( [_p1, _p2] );
+        displayController.unhighlightAll();
         _isP1Turn = true;
         currentPlayer = _p1;
         mark = _p1.mark;
@@ -178,6 +198,7 @@ const gameFlow = (() => {
         gameParts.totalGames++;
         _resetMatchButton.textContent = "Next match";
         displayController.updateInfoDisplay( [_p1, _p2] );
+        displayController.highlightWinner([{row: 0}]);
         // call showGameOutcome
     };
 

@@ -3,8 +3,9 @@
 In progress.
 
 #### TO-DO NEXT
-- add ability to edit name, et cetera
+- currently setting the specific color to revert to after new match for winning highlighted row/col
 - change color of winning row/col or winning marks
+- add ability to edit name, et cetera
 #### TO-DO LATER
 ##### Features
 - add hard AI that knows best move to make next
@@ -30,6 +31,8 @@ In progress.
 ##### Maybe
 
 #### DONE
+- *v0.2.1*
+- add _highlightSquare() and unhighlightAll()
 - *v0.2.0*
 - get info-items to justify
 - add computer player w/ "easy" AI
