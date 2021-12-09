@@ -1,7 +1,10 @@
 :root {
     --board-space-size: 10rem;
-    --clr-pri: red;
+    --clr-pri: lawngreen;
+    --clr-sec: black;
     font-size: 62.5%;
+    font-family: "VT323", monospace;
+    background-color: var(--clr-sec);
 }
 * {
     margin: 0;
@@ -17,28 +20,24 @@ body {
 /*--SIDEBAR START--*/
 header {
     margin: 2rem 0;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
 }
 .players-container {
     display: flex;
     justify-content: space-around;
 }
-hr {
-    margin: 1rem 0;
-}
-.player-info-wrapper {
-    border: 1px solid black;
-}
 .game-info-wrapper {
+    margin-top: 1rem;
     display: flex;
     justify-content: space-around;
 }
 .info-item {
     width: 18rem;
     height: 3rem;
+    padding-left: .5rem;
     line-height: 3rem;
     text-align: justify;
-    background: lawngreen;
+    background: var(--clr-pri);
 }
 /* this is a hack to justify a single line */
 .info-item::after {
@@ -47,20 +46,11 @@ hr {
     width: 100%;
 }
 .info-detail {
-    width: 10rem;
+    width: 9rem;
     display: inline-block;
     text-align: center;
     font-size: 1.5rem;
-    color: red;
-    background: lightgreen;
-}
-.buttons-wrapper {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-around;
-}
-button {
-    font-size: inherit;
+    border: .5px solid var(--clr-sec);
 }
 /*--SIDEBAR END--*/
 
@@ -68,11 +58,12 @@ button {
 .game-board {
     --board-gap-size: 1rem;
     width: calc(var(--board-space-size) * 3 + var(--board-gap-size) * 2);
-    margin: auto;
+    margin: 4rem auto;
     display: grid;
     grid-template: repeat(3, 1fr) / repeat(3, 1fr);
     grid-gap: 1rem;
-    background: black;
+    color: var(--clr-pri);
+    background: var(--clr-pri);
     user-select: none;
 }
 /*--GAME BOARD END--*/
@@ -86,18 +77,44 @@ button {
     align-items: center;
     font-size: 5rem;
     white-space: pre-wrap;
-    background: var(--clr-pri);
+    color: var(--clr-pri);
+    background: var(--clr-sec);
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    transition: all .2s;
+}
+.space:hover {
+    background: var(--clr-pri);
+    color: var(--clr-sec);
+}
+/*--GAME SPACE END--*/
+
+/*--CONTROLS START--*/
+.buttons-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}
+button {
+    margin: .5rem;
+    padding: .5rem;
+    width: 11rem;
+    height: 5rem;
+    font-size: inherit;
+    border: .2rem solid var(--clr-pri);
+    font-size: 1.6rem;
+    color: var(--clr-pri);
+    background: var(--clr-sec);
 }
 @media (hover: hover) {
-    .space:hover {
-        background: darkred;
+    button:hover {
+        background: var(--clr-pri);
+        color: var(--clr-sec);
     }
 }
-
-/*--GAME SPACE END--*/
+button:active {
+    color: var(--clr-pri);
+}
+/*--CONTROLS END--*/
 
 /*--FOOTER START--*/
 /*--FOOTER END--*/

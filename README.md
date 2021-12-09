@@ -3,32 +3,43 @@
 In progress.
 
 #### TO-DO NEXT
-- add ability to edit name, et cetera
+- fix desktop so marks are black when square is highlighted
+- fix touch buttons so they color appropriately
 #### TO-DO LATER
 ##### Features
+- add ability to edit name, et cetera
 - add hard AI that knows best move to make next
 - add medium AI that only checks for two marks in a row, else does random
 ##### Behavior
 - remember games won/tied upon refresh
 - mobile; don't allow ios tapping after game is complete
     - should it still highlight if the tapped square is not empty? or different color maybe
+- fix highlighted streak unhighlighting a square if you touch it
 ##### Style
-- choose fonts
-- style grid
 - should p1 and p2 groups go to the left and right on desktop, top and bottom on mobile?
-- if clicked, indent and leave marker; if space is taken, indent as current marker and leave as-is
+    - or maybe all at the top but like, a heading for player names then the next line is "name    vs.    name", et cetera, then buttons can go below the grid
 - italicize indication of whether player is human- or computer-controlled
 - mobile; disable double tap to zoom
 - add a visual indication as to whose turn it is?  maybe just if both players are human?
-- should background of board be transparent?  I mean probably, right?
-- create a line through the winning sequence?
 - make game pieces unselectable
 - handle long names
+- decide if highlighted squares should have a black border
 ##### Other
-- decide if that nestedForLoop function is worthwhile (look through other instances of where i'll need to use it)
 ##### Maybe
 
 #### DONE
+- *v0.3.0*
+- settle on style direction
+- choose font
+- choose color scheme
+- style grid
+- style info panels
+- style buttons
+- switch ontouch instances to event listeners
+- get rid of nestedForLoop()
+- move buttons to under grid
+- make buttons equal sizes
+- move space touch listener creation from clearBoardDisplay() to _createDOMBoard()
 - *v0.2.2*
 - change color of winning row/col/diag streak (or winning marks?) even if multiple streaks
 - *v0.2.1*

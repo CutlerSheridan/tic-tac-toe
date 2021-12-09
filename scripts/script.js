@@ -5,16 +5,11 @@ const gameParts = (() => {
         ["_", "_", "_"]
     ];
     const clearBoard = () => {
-        // for (let i = 0; i < 3; i++) {
-        //     for (let n = 0; n < 3; n++) {
-        //         board[i][n] = "_";
-        //     }
-        // }
-        const emptyBoard = (row, col) => {
-            board[row][col] = "_";
-        };
-        nestedForLoop(emptyBoard);
-
+        for (let i = 0; i < 3; i++) {
+            for (let n = 0; n < 3; n++) {
+                board[i][n] = "_";
+            }
+        }
         displayController.clearBoardDisplay();
     };
     let gamesTied = 0;
@@ -66,6 +61,14 @@ const displayController = (() => {
                 newSpace.classList.add("space");
                 newSpace.dataset.boardLoc = `${row},${col}`;
                 newSpace.textContent = " ";
+                newSpace.addEventListener("touchstart", (e) => {;
+                    e.target.style.background = "var(--clr-pri)";
+                    e.target.style.color = "var(--clr-sec)";
+                });
+                newSpace.addEventListener("touchend", (e) => {
+                    e.target.style.background = "var(--clr-sec)";
+                    e.target.style.color = "var(--clr-pri)";
+                });
                 boardFragment.append(newSpace);
             }
         }
@@ -76,12 +79,6 @@ const displayController = (() => {
     const clearBoardDisplay = () => {
         spaces.forEach(space => {
             space.textContent = " ";
-            space.ontouchstart = function() {
-                this.style.backgroundColor = "darkred";
-            }
-            space.ontouchend = function() {
-                this.style.backgroundColor = "red";
-            }
         });
     }
     const updateInfoDisplay = (playerArray) => {
@@ -105,39 +102,41 @@ const displayController = (() => {
 
     const highlightWinner = (winningStreaks = {row: false, col: false, diag: false}) => {
         console.log("reaches highlightWinner()");
-            if (typeof winningStreaks.row === "number") {
+        if (typeof winningStreaks.row === "number") {
+            for (let i = 0; i < 3; i++) {
+                _highlightSquare({row: winningStreaks.row, col: i});
+            }
+        }
+        if (typeof winningStreaks.col === "number") {
+            for (let i = 0; i < 3; i++) {
+                _highlightSquare({row: i, col: winningStreaks.col});
+            }
+        }
+        if (typeof winningStreaks.diag === "number") {
+            if (winningStreaks.diag === -1 || winningStreaks.diag === 0) {
                 for (let i = 0; i < 3; i++) {
-                    _highlightSquare({row: winningStreaks.row, col: i});
+                    _highlightSquare({row: i, col: i});
                 }
             }
-            if (typeof winningStreaks.col === "number") {
+            if (winningStreaks.diag === 1 || winningStreaks.diag === 0) {
                 for (let i = 0; i < 3; i++) {
-                    _highlightSquare({row: i, col: winningStreaks.col});
+                    _highlightSquare({row: (5 - i) % 3, col: i});
                 }
             }
-            if (typeof winningStreaks.diag === "number") {
-                if (winningStreaks.diag === -1 || winningStreaks.diag === 0) {
-                    for (let i = 0; i < 3; i++) {
-                        _highlightSquare({row: i, col: i});
-                    }
-                }
-                if (winningStreaks.diag === 1 || winningStreaks.diag === 0) {
-                    for (let i = 0; i < 3; i++) {
-                        _highlightSquare({row: (5 - i) % 3, col: i});
-                    }
-                }
-            }
-
+        }
     }
     const _highlightSquare = (move) => {
         const square = document.querySelector(`.space[data-board-loc="${move.row},${move.col}"]`);
-        square.style.background = "darkgreen";
-        console.log("reaches highlightWinner() > _highlightSquare");
+        square.style.background = "var(--clr-pri)";
+        square.style.color = "var(--clr-sec)";
     }
     const unhighlightAll = () => {
         const root = document.querySelector(":root");
-        const defaultColor = root.style.getPropertyValue("--clr-pri");
-        spaces.forEach(space => space.style.background = defaultColor);
+        const defaultColor = root.style.getPropertyValue("--clr-sec");
+        spaces.forEach(space => {
+            space.style.background = defaultColor;
+            space.style.color = "var(--clr-pri)"
+        });
     }
     return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark, highlightWinner, unhighlightAll};
 })();
@@ -320,11 +319,3 @@ const gameFlow = (() => {
     setupGame();
     return {setupGame, evaluate};
 })();
-
-function nestedForLoop(func) {
-    for (let i = 0; i < 3; i++) {
-        for (let n = 0; n < 3; n++) {
-            func(i, n);
-        }
-    }
-}
