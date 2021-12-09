@@ -145,10 +145,11 @@ const displayController = (() => {
     }
     const unhighlightAll = () => {
         const root = document.querySelector(":root");
-        const defaultColor = root.style.getPropertyValue("--clr-sec");
+        const defaultBackgroundColor = root.style.getPropertyValue("--clr-sec");
+        const defaultTextColor = root.style.getPropertyValue("--clr-pri");
         spaces.forEach(space => {
-            space.style.background = defaultColor;
-            space.style.color = "var(--clr-pri)"
+            space.style.background = defaultBackgroundColor;
+            space.style.color = defaultTextColor;
         });
     }
     return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark, highlightWinner, unhighlightAll};
