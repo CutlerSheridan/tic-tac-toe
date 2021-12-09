@@ -57,7 +57,7 @@ const displayController = (() => {
         let boardFragment = document.createDocumentFragment();
         for (let row = 0; row < 3; row++) {
             for (let col = 0; col < 3; col++) {
-                const newSpace = document.createElement("div");
+                const newSpace = document.createElement("button");
                 newSpace.classList.add("space");
                 newSpace.dataset.boardLoc = `${row},${col}`;
                 newSpace.textContent = " ";

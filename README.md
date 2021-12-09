@@ -3,15 +3,19 @@
 Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
-- mobile; disable double tap to zoom
-- fix mobile highlighted streak unhighlighting a square if you touch it
-- make game pieces unselectable
+- add form to customize game
+- write function to take form info and apply it to game, resetting all games if human/comp or difficulty is changed
+- form; make difficulty selection available only if "computer" is checked
+- write function to display form
+- write function to hide form
+- write function to reset form (maybe not necessary if it's meant to populate with current info?)
 #### TO-DO LATER
 ##### Features
 - add ability to edit name, et cetera
 - add hard AI that knows best move to make next
 - add medium AI that only checks for two marks in a row, else does random
 ##### Behavior
+- fix mobile highlighted streak unhighlighting a square if you touch it
 - make board uninteractable upon someone winning?  just on mobile?
 - remember players' info upon refresh
 ##### Style
@@ -26,6 +30,11 @@ Play tic-tac-toe against a human or computer opponent!  Choose the difficulty se
 ##### Maybe
 
 #### DONE
+- *v0.3.3*
+- change game space divs into buttons so I can disable double-tap to zoom on mobile
+- mobile; disable double tap to zoom
+- make game pieces unselectable
+- adjust shade of black
 - *v0.3.2*
 - fix desktop so marks are black when square is highlighted
 - *v0.3.1*
