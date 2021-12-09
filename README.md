@@ -1,10 +1,10 @@
 # Tic-Tac-Toe
 ## A simple tic-tac-toe game
-In progress.
+Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
+- make board uninteractable upon someone winning?
 - fix desktop so marks are black when square is highlighted
-- fix touch buttons so they color appropriately
 #### TO-DO LATER
 ##### Features
 - add ability to edit name, et cetera
@@ -25,9 +25,12 @@ In progress.
 - handle long names
 - decide if highlighted squares should have a black border
 ##### Other
+- add beep sounds?
 ##### Maybe
 
 #### DONE
+- *v0.3.1*
+- fix touch buttons so they color appropriately
 - *v0.3.0*
 - settle on style direction
 - choose font

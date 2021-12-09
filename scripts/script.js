@@ -75,6 +75,19 @@ const displayController = (() => {
         const boardElement = document.querySelector(".game-board");
         boardElement.append(boardFragment);
     })();
+    (function _addTouchButtonEffects () {
+        const buttons = document.querySelectorAll("button");
+        buttons.forEach(button => {
+            button.addEventListener("touchstart", () => {
+                button.style.background = "var(--clr-pri)";
+                button.style.color = "var(--clr-sec)";
+            });
+            button.addEventListener("touchend", () => {
+                button.style.background = "var(--clr-sec)";
+                button.style.color = "var(--clr-pri)";
+            })
+        })
+    })();
     const spaces = document.querySelectorAll(".space");
     const clearBoardDisplay = () => {
         spaces.forEach(space => {
