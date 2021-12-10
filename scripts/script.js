@@ -152,7 +152,13 @@ const displayController = (() => {
             space.style.color = defaultTextColor;
         });
     }
-    return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark, highlightWinner, unhighlightAll};
+    const toggleFormVisibility = () => {
+        gameFlow.form.classList.toggle("invisible");
+    }
+    const customizeButton = document.getElementById("customize");
+    customizeButton.addEventListener("click", toggleFormVisibility);
+
+    return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark, highlightWinner, unhighlightAll, toggleFormVisibility};
 })();
 
 const gameFlow = (() => {
@@ -318,7 +324,7 @@ const gameFlow = (() => {
         }
         return false;
     };
-    const _clearAllGames = () => {
+    const clearAllGames = () => {
         _p1.gamesWon = 0;
         _p2.gamesWon = 0;
         gameParts.gamesTied = 0;
@@ -328,8 +334,9 @@ const gameFlow = (() => {
     const _resetMatchButton = document.getElementById("reset-match");
     _resetMatchButton.addEventListener("click", setupGame);
     const _clearAllGamesButton = document.getElementById("clear-all-games");
-    _clearAllGamesButton.addEventListener("click", _clearAllGames);
+    _clearAllGamesButton.addEventListener("click", clearAllGames);
+    const form = document.querySelector("form");
     
     setupGame();
-    return {setupGame, evaluate};
+    return {setupGame, evaluate, clearAllGames, form};
 })();
