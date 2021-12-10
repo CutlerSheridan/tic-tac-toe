@@ -43,5 +43,55 @@
     </div>
     <!--CONTROLS END-->
 
+    <!-- FORM START -->
+    <form>
+        <h1>CustomizeGame();</h1>
+
+        <div class="player-form-group">
+            <h2>Player_1</h2>
+            <div class="label-input-wrapper">
+                <label class="input-label" for="p1-name-input">Name: </label>
+                <input type="text" class="text-input" id="p1-name-input" autocomplete="off" required>
+            </div>
+            <div class="label-input-wrapper">
+                <label class="input-label" for="p1-type-input">Computer opponent?</label>
+                <input type="checkbox" id="p1-type-input">
+            </div>
+            <div class="radio-wrapper">
+                <p class="radio-legend">Difficulty:</p>
+
+                <input type="radio" name="p1-difficulty" id="p1-easy" checked>
+                <label class="radio-label" for="p1-easy">Easy</label>
+
+                <input type="radio" name="p1-difficulty" id="p1-hard">
+                <label class="radio-label" for="p1-hard">Hard</label>
+            </div>
+        </div>
+        
+        <div class="player-form-group">
+            <h2>Player_2</h2>
+            <div class="label-input-wrapper">
+                <label class="input-label" for="p2-name-input">Name: </label>
+                <input type="text" class="text-input" id="p2-name-input" autocomplete="off" required>
+            </div>
+            <div class="label-input-wrapper">
+                <label class="input-label" for="p2-type-input">Computer opponent?</label>
+                <input type="checkbox" id="p2-type-input" checked>
+            </div>
+            <div class="radio-wrapper">
+                <p class="radio-legend">Difficulty:</p>
+
+                <input type="radio" name="p2-difficulty" id="p2-easy" checked>
+                <label class="radio-label" for="p2-easy">Easy</label>
+
+                <input type="radio" name="p2-difficulty" id="p2-hard">
+                <label class="radio-label" for="p2-hard">Hard</label>
+            </div>
+        </div>
+
+        <button type="submit" class="control-button">Submit</button>
+    </form>
+    <!-- FORM END -->
+
     <script src="scripts/script.js"></script>
 </body>

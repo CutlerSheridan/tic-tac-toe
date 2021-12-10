@@ -121,5 +121,67 @@ header {
 }
 /*--CONTROLS END--*/
 
+/*--FORM START--*/
+form {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    padding: 3rem;
+    font-size: 2rem;
+    color: var(--clr-pri);
+    background: var(--clr-sec);
+}
+.player-form-group {
+    margin: 1.6rem 0 2.2rem 0;
+}
+.label-input-wrapper,
+.radio-wrapper {
+    margin-bottom: 1.3rem;
+    display: flex;
+    align-items: center;
+}
+.input-label,
+.radio-label,
+.radio-legend {
+    margin-right: 1rem;
+}
+input[type="text"] {
+    padding: .3rem .5rem;
+    height: 3.5rem;
+    border: .2rem dashed transparent;
+    border-radius: 0;
+    border-bottom-color: var(--clr-pri);
+    font-size: inherit;
+    background: var(--clr-sec);
+    color: var(--clr-pri);
+}
+input[type="text"]:focus {
+    outline: none;
+    border: .2rem solid var(--clr-pri);
+}
+input[type="radio"] {
+    display: none;
+}
+.radio-wrapper {
+    /* background: purple; */
+}
+p {
+    /* background: red; */
+}
+.radio-label {
+    margin-right: 1.5rem;
+    padding: .5rem 0;
+    height: 3.3rem;
+    border-top: .2rem solid transparent;
+    border-bottom: .2rem solid transparent;
+    cursor: pointer;
+    /* background: blue; */
+}
+input[type="radio"]:checked + .radio-label {
+    border-bottom-color: var(--clr-pri);
+}
+/*--FORM END--*/
+
 /*--FOOTER START--*/
 /*--FOOTER END--*/
