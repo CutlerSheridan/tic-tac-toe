@@ -56,15 +56,18 @@
             <div class="label-input-wrapper">
                 <label class="input-label" for="p1-type-input">Computer opponent?</label>
                 <input type="checkbox" id="p1-type-input">
+                <div class="warning invisible" id="p1-type-warning">(Resets games)</div>
             </div>
             <div class="radio-wrapper">
                 <p class="radio-legend">Difficulty:</p>
 
-                <input type="radio" name="p1-difficulty" id="p1-easy">
+                <input type="radio" name="p1-difficulty" id="p1-easy" value="easy">
                 <label class="radio-label" for="p1-easy">Easy</label>
 
-                <input type="radio" name="p1-difficulty" id="p1-hard">
+                <input type="radio" name="p1-difficulty" id="p1-hard" value="hard">
                 <label class="radio-label" for="p1-hard">Hard</label>
+
+                <div class="warning invisible" id="p1-diff-warning">(Resets games)</div>
             </div>
         </div>
         
@@ -77,15 +80,18 @@
             <div class="label-input-wrapper">
                 <label class="input-label" for="p2-type-input">Computer opponent?</label>
                 <input type="checkbox" id="p2-type-input" checked>
+                <div class="warning invisible" id="p2-type-warning">(Resets games)</div>
             </div>
             <div class="radio-wrapper">
                 <p class="radio-legend">Difficulty:</p>
 
-                <input type="radio" name="p2-difficulty" id="p2-easy" checked>
+                <input type="radio" name="p2-difficulty" id="p2-easy" value="easy" checked>
                 <label class="radio-label" for="p2-easy">Easy</label>
 
-                <input type="radio" name="p2-difficulty" id="p2-hard">
+                <input type="radio" name="p2-difficulty" id="p2-hard" value="hard">
                 <label class="radio-label" for="p2-hard">Hard</label>
+
+                <div class="warning invisible" id="p2-diff-warning">(Resets games)</div>
             </div>
         </div>
 

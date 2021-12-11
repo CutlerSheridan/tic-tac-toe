@@ -14,7 +14,7 @@ const gameParts = (() => {
     };
     let gamesTied = 0;
     let totalGames = 0;
-    const Player = (name, isHuman, mark, difficulty, gamesWon = 0) => {
+    const Player = (name, isComp, mark, difficulty, gamesWon = 0) => {
         const _Move = () => {
             let row, col;
             return {row, col};
@@ -47,7 +47,7 @@ const gameParts = (() => {
             // gameFlow.evaluate();
             // add logic here
         };
-        return {name, isHuman, mark, difficulty, gamesWon, findRandomMove, findBestMove, makeMove};
+        return {name, isComp, mark, difficulty, gamesWon, findRandomMove, findBestMove, makeMove};
     };
     return {board, clearBoard, gamesTied, totalGames, Player};
 })();
@@ -98,7 +98,7 @@ const displayController = (() => {
         for (let i = 1; i < 3; i++) {
             const p = playerArray[i - 1];
             document.getElementById(`p${i}-name`).textContent = p.name;
-            document.getElementById(`p${i}-type`).textContent = p.isHuman ? "Human" : `Comp. (${p.difficulty})`;
+            document.getElementById(`p${i}-type`).textContent = p.isComp ? `Comp. (${p.difficulty})` : "Human";
             document.getElementById(`p${i}-score`).textContent = p.gamesWon;
             document.getElementById("games-tied-num").textContent = gameParts.gamesTied;
             document.getElementById("total-games-num").textContent = gameParts.totalGames;
@@ -154,6 +154,16 @@ const displayController = (() => {
     }
     const toggleFormVisibility = () => {
         gameFlow.form.classList.toggle("invisible");
+        for (let i = 1; i < 3; i++) {
+            const typeWarning = document.getElementById(`p${i}-type-warning`);
+            if (!typeWarning.classList.contains("invisible")) {
+                typeWarning.classList.add("invisible");
+            }
+            const diffWarning = document.getElementById(`p${i}-diff-warning`);
+            if (!diffWarning.classList.contains("invisible")) {
+                diffWarning.classList.add("invisible");
+            }
+        }
     }
     const customizeButton = document.getElementById("customize");
     customizeButton.addEventListener("click", toggleFormVisibility);
@@ -162,8 +172,8 @@ const displayController = (() => {
 })();
 
 const gameFlow = (() => {
-    const _p1 = gameParts.Player("Player 1", true, "X");
-    const _p2 = gameParts.Player("Player 2", false, "O", "easy");
+    const _p1 = gameParts.Player("Player 1", false, "X", "easy");
+    const _p2 = gameParts.Player("Player 2", true, "O", "easy");
 
     let _isP1Turn;
     let currentPlayer;
@@ -187,7 +197,7 @@ const gameFlow = (() => {
         displayController.spaces.forEach(space => space.removeEventListener("click", _endTurn));
         currentPlayer = _isP1Turn ? _p1 : _p2;
         mark = currentPlayer.mark;
-        if (!currentPlayer.isHuman) {
+        if (currentPlayer.isComp) {
             setTimeout(() => {
                 if (currentPlayer.difficulty === "easy") {
                     currentPlayer.findRandomMove();
@@ -331,11 +341,55 @@ const gameFlow = (() => {
         gameParts.totalGames = 0;
         setupGame();
     };
+    const _respondToFormInputs = (e) => {
+        for (let i = 1; i < 3; i++) {
+            if (e.target.id === `p${i}-type-input`) {
+                const typeWarning = document.getElementById(`p${i}-type-warning`);
+                typeWarning.classList.toggle("invisible");
+            }
+            if (e.target.name === `p${i}-difficulty`) {
+                const diffWarning = document.getElementById(`p${i}-diff-warning`);
+                if (e.target.value !== (i === 1 ? _p1.difficulty : _p2.difficulty)) {
+                    diffWarning.classList.remove("invisible");
+                } else {
+                    diffWarning.classList.add("invisible");
+                }
+            }
+        } 
+    }
+    const _validateForm = (e) => {
+        e.preventDefault();
+        // if player type is computer, make sure difficulty is selected
+    }
+    const _updatePlayersFromForm = (e) => {
+        e.preventDefault();
+        const playerArray = [_p1, _p2];
+        for (let i = 1; i < 3; i++) {
+            playerArray[i - 1].name = form.elements[`p${i}-name-input`].value;
+            pWasComp = playerArray[i - 1].isComp;
+            pOldDifficulty = playerArray[i - 1].difficulty;
+            playerArray[i - 1].isComp = form.elements[`p${i}-type-input`].checked;
+            playerArray[i - 1].difficulty = form.elements[`p${i}-difficulty`].value;
+            if (pWasComp !== form.elements[`p${i}-type-input`].checked ||
+            pOldDifficulty !== form.elements[`p${i}-difficulty`].value) {
+                clearAllGames();
+            }
+        }
+        
+        displayController.updateInfoDisplay(playerArray);
+        displayController.toggleFormVisibility();
+    }
     const _resetMatchButton = document.getElementById("reset-match");
     _resetMatchButton.addEventListener("click", setupGame);
     const _clearAllGamesButton = document.getElementById("clear-all-games");
     _clearAllGamesButton.addEventListener("click", clearAllGames);
+
     const form = document.querySelector("form");
+    const formInputs = form.elements;
+    for (let i = 0; i < formInputs.length; i++) {
+        formInputs[i].addEventListener("change", _respondToFormInputs);
+    }
+    form.addEventListener("submit", _updatePlayersFromForm);
     
     setupGame();
     return {setupGame, evaluate, clearAllGames, form};

@@ -3,19 +3,18 @@
 Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
-- write function to take form info and apply it to game, resetting all games if human/comp or difficulty is changed
 
 #### TO-DO LATER
 ##### Features
-- add ability to edit name, et cetera
 - add hard AI that knows best move to make next
 - add medium AI that only checks for two marks in a row, else does random
 ##### Behavior
+- form; make "computer opponent" become checked automatically if user clicks a difficulty
 - form; make difficulty selection available only if "computer" is checked
 - form; make difficulty selection unchecked if computer player is unchecked
 - form; make difficulty selection go back to what it was if you re-check computer opponent
-- form; warn user if games will reset
-- require difficulty selection if computer opponent is checked
+- form; require difficulty selection if computer opponent is checked
+- form; should only one "resets games" warning be visible for each player?  or good to show both?
 - fix mobile highlighted streak unhighlighting a square if you touch it
 - make board uninteractable upon someone winning?  just on mobile?
 - remember players' info upon refresh
@@ -31,6 +30,14 @@ Play tic-tac-toe against a human or computer opponent!  Choose the difficulty se
 ##### Maybe
 
 #### DONE
+- *0.4.2*
+- add ability to edit name + if player is computer
+- form; warn user if games will reset from changing opponent type
+- form; have reset warning disappear after submission so it's not there next time
+- make all games reset if human/comp or difficulty is changed
+- make next match start correctly if both computer players
+- fix warning visibility so it doesn't accrue eventListeners
+- warn user games will reset if changing difficulty
 - *v0.4.1*
 - fix positioning of difficulty selector
 - write function to display/hide form
