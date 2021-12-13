@@ -27,10 +27,7 @@ const gameParts = (() => {
             displayController.displayMark(move, mark);
         };
         const findRandomMove = () => {
-            let move = {
-                row: null,
-                col: null
-            };
+            let move = _Move();
             do {
                 move.row = Math.floor(Math.random() * 3);
                 move.col = Math.floor(Math.random() * 3);
@@ -38,18 +35,79 @@ const gameParts = (() => {
             makeMove(move);
         }
         const findBestMove = () => {
-            // *** "player" parameter prob. unnecessary now that it's in Player()
-            // replace empty space w/ player.mark
-            // call _minimax();
-            // call makeMove() using best move
+            let bestMove = _Move();
+            let bestVal = -1000;
+            for (let row = 0; row < 3; row++) {
+                for (let col = 0; col < 3; col++) {
+                    if (board[row][col] === "_") {
+                        board[row][col] = mark;
+                        let moveVal = _minimax(0, false);
+                        board[row][col] = "_";
+                        console.log(`[${row}, ${col}] value = ${moveVal}`);
+                        if (moveVal > bestVal) {
+                            console.log("This one is better");
+                            bestVal = moveVal;
+                            bestMove.row = row;
+                            bestMove.col = col;
+                        }
+                    }
+                }
+            }
+            makeMove(bestMove);
         };
-        const _minimax = (board, depth, isMax, alpha, beta) => {
-            // gameFlow.evaluate();
-            // add logic here
+        const _minimax = (depth, isMaximizingPlayer) => {
+            const playerMark = mark;
+            const oppoMark = playerMark === "X" ? "O" : "X";
+            let score = 0;
+            if (!movesAreLeft()) {
+                score = gameFlow.evaluate(playerMark);
+                if (score > 0) {
+                    return score - depth;
+                } else if (score < 0) {
+                    return score + depth;
+                } else {
+                    return score;
+                }
+            }
+            if (isMaximizingPlayer) {
+                let bestScore = -1000;
+                for (let row = 0; row < 3; row++) {
+                    for (let col = 0; col < 3; col++) {
+                        if (board[row][col] === "_") {
+                            board[row][col] = playerMark;
+                            bestScore = Math.max(bestScore, _minimax(depth + 1, !isMaximizingPlayer));
+                            board[row][col] = "_";
+                        }
+                    }
+                }
+                return bestScore;
+            } else {
+                let bestScore = 1000;
+                for (let row = 0; row < 3; row++) {
+                    for (let col = 0; col < 3; col++) {
+                        if (board[row][col] === "_") {
+                            board[row][col] = oppoMark;
+                            bestScore = Math.min(bestScore, _minimax(depth + 1, !isMaximizingPlayer));
+                            board[row][col] = "_";
+                        }
+                    }
+                }
+                return bestScore;
+            }
         };
         return {name, isComp, mark, difficulty, gamesWon, findRandomMove, findBestMove, makeMove};
     };
-    return {board, clearBoard, gamesTied, totalGames, Player};
+    const movesAreLeft = () => {
+        for (let row = 0; row < 3; row++) {
+            for (let col = 0; col < 3; col++) {
+                if (gameParts.board[row][col] === "_") {
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+    return {board, clearBoard, gamesTied, totalGames, Player, movesAreLeft};
 })();
 
 const displayController = (() => {
@@ -225,7 +283,7 @@ const gameFlow = (() => {
         if (result > 0 || result < 0) {
             _endGame(currentPlayer);
             return;
-        } else if (!_movesAreLeft()) {
+        } else if (!gameParts.movesAreLeft()) {
             _endGame(null);
             return;
         }
@@ -321,16 +379,6 @@ const gameFlow = (() => {
         }
         return streaks;
     }
-    const _movesAreLeft = () => {
-        for (let row = 0; row < 3; row++) {
-            for (let col = 0; col < 3; col++) {
-                if (gameParts.board[row][col] === "_") {
-                    return true;
-                }
-            }
-        }
-        return false;
-    };
     const clearAllGames = () => {
         _p1.gamesWon = 0;
         _p2.gamesWon = 0;

@@ -3,8 +3,7 @@
 Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
-- add hard AI that knows best move to make next
-
+- fix game reset triggers so changing more than one doesn't fuck up the start of the next turn if p1 is computer-controlled
 #### TO-DO LATER
 ##### Features
 - add medium AI that only checks for two marks in a row, else does random
@@ -15,6 +14,7 @@ Play tic-tac-toe against a human or computer opponent!  Choose the difficulty se
 - make board uninteractable upon someone winning?  just on mobile?
 - remember players' info upon refresh
 ##### Style
+- choose color for greyed-out difficulty selection
 - style checkboxes in form
 - should p1 and p2 groups go to the left and right on desktop, top and bottom on mobile?
     - or maybe all at the top but like, a heading for player names then the next line is "name    vs.    name", et cetera, then buttons can go below the grid
@@ -26,6 +26,9 @@ Play tic-tac-toe against a human or computer opponent!  Choose the difficulty se
 ##### Maybe
 
 #### DONE
+- *v0.5.0*
+- add hard AI that knows best move to make next
+- fix hard AI so comp vs. comp ends in tie
 - *v0.4.3*
 - make starting difficulty checked for human as well
 - form; make difficulty selection available only if "computer" is checked; greyed out otherwise
