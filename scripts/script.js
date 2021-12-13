@@ -181,8 +181,6 @@ const gameFlow = (() => {
     let _winningStreaks = {row: false, col: false, diag: false};
     
     const setupGame = (form) => {
-        // assign info from form to p1 and p2
-        // also maybe put the form somewhere else in this module so this can be 
         displayController.updateInfoDisplay( [_p1, _p2] );
         displayController.unhighlightAll();
         _isP1Turn = true;
@@ -190,7 +188,6 @@ const gameFlow = (() => {
         mark = _p1.mark;
         _resetMatchButton.textContent = "Reset match"
         gameParts.clearBoard();
-        // if reset checked, both gamesWon + gameParts.gamesTied = 0
         _startTurn();
     };
     const _startTurn = () => {
@@ -346,6 +343,7 @@ const gameFlow = (() => {
             if (e.target.id === `p${i}-type-input`) {
                 const typeWarning = document.getElementById(`p${i}-type-warning`);
                 typeWarning.classList.toggle("invisible");
+                document.getElementById(`p${i}-radio-wrapper`).classList.toggle("greyed-out");
             }
             if (e.target.name === `p${i}-difficulty`) {
                 const diffWarning = document.getElementById(`p${i}-diff-warning`);

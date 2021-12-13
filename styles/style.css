@@ -185,7 +185,12 @@ input[type="radio"] {
     cursor: pointer;
 }
 input[type="radio"]:checked + .radio-label {
-    border-bottom-color: var(--clr-pri);
+    border-bottom-color: inherit;
+}
+.greyed-out {
+    color: grey;
+    border-bottom-color: grey;
+    pointer-events: none;
 }
 /*--FORM END--*/
 
