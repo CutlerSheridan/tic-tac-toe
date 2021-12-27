@@ -3,29 +3,33 @@
 Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
-- fix game reset triggers so changing more than one doesn't fuck up the start of the next turn if p1 is computer-controlled
+- fix game reset triggers so changing type or difficulty  on p1 and on p2 doesn't fuck up the start of the next turn if p1 is computer-controlled
 #### TO-DO LATER
 ##### Features
-- add medium AI that only checks for two marks in a row, else does random
 ##### Behavior
-- form; auto-fill starting names into form?
-- form; should only one "resets games" warning be visible for each player?  or good to show both?
-- fix mobile highlighted streak unhighlighting a square if you touch it
-- make board uninteractable upon someone winning?  just on mobile?
 - remember players' info upon refresh
 ##### Style
-- choose color for greyed-out difficulty selection
 - style checkboxes in form
 - should p1 and p2 groups go to the left and right on desktop, top and bottom on mobile?
     - or maybe all at the top but like, a heading for player names then the next line is "name    vs.    name", et cetera, then buttons can go below the grid
 - add a visual indication as to whose turn it is?  maybe just if both players are human?
 - handle long names
-- decide if highlighted squares should have a black border
+- add footer
 ##### Other
 - add beep sounds?
 ##### Maybe
 
 #### DONE
+- *v0.5.1*
+- add medium AI that, 75% of time, chooses optimal move, 25% of time chooses random move
+- make "resets games" warning red
+- properly vertically center warning that follows difficulty selection
+- make warning font smaller
+- cleaned out console.log()s
+- fix mobile highlighted streak unhighlighting a square if you touch it - now it just disables any pointer-events on spaces during game results
+- make field labels more tech-y
+- make medium difficulty show up after computer label as "med."
+- form; add default value of names for input fields
 - *v0.5.0*
 - add hard AI that knows best move to make next
 - fix hard AI so comp vs. comp ends in tie

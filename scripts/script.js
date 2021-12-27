@@ -21,9 +21,6 @@ const gameParts = (() => {
         };
         const makeMove = (move) => {
             board[move.row][move.col] = mark;
-            console.log({
-                board
-            });
             displayController.displayMark(move, mark);
         };
         const findRandomMove = () => {
@@ -43,9 +40,7 @@ const gameParts = (() => {
                         board[row][col] = mark;
                         let moveVal = _minimax(0, false);
                         board[row][col] = "_";
-                        console.log(`[${row}, ${col}] value = ${moveVal}`);
                         if (moveVal > bestVal) {
-                            console.log("This one is better");
                             bestVal = moveVal;
                             bestMove.row = row;
                             bestMove.col = col;
@@ -162,17 +157,12 @@ const displayController = (() => {
             document.getElementById("total-games-num").textContent = gameParts.totalGames;
         }
     }
-    // func called startScreen() 
-        // _editForm(true);
-    // func called hoverBehavoir IF i don't just highlight squares w/ CSS
-    // func called inputBehavior (mark) (also, do I need)
     const displayMark = (move, mark) => {
         const space = document.querySelector(`.space[data-board-loc="${move.row},${move.col}"`);
         space.textContent = mark;
     }
 
     const highlightWinner = (winningStreaks = {row: false, col: false, diag: false}) => {
-        console.log("reaches highlightWinner()");
         if (typeof winningStreaks.row === "number") {
             for (let i = 0; i < 3; i++) {
                 _highlightSquare({row: winningStreaks.row, col: i});
@@ -230,8 +220,8 @@ const displayController = (() => {
 })();
 
 const gameFlow = (() => {
-    const _p1 = gameParts.Player("Player 1", false, "X", "easy");
-    const _p2 = gameParts.Player("Player 2", true, "O", "easy");
+    const _p1 = gameParts.Player("Player_1", false, "X", "med.");
+    const _p2 = gameParts.Player("Player_2", true, "O", "med.");
 
     let _isP1Turn;
     let currentPlayer;
@@ -246,6 +236,7 @@ const gameFlow = (() => {
         mark = _p1.mark;
         _resetMatchButton.textContent = "Reset match"
         gameParts.clearBoard();
+        displayController.spaces.forEach(space => space.style.pointerEvents = "auto");
         _startTurn();
     };
     const _startTurn = () => {
@@ -256,6 +247,14 @@ const gameFlow = (() => {
             setTimeout(() => {
                 if (currentPlayer.difficulty === "easy") {
                     currentPlayer.findRandomMove();
+                }
+                else if (currentPlayer.difficulty === "med.") {
+                    const dieRoll = Math.floor(Math.random() * 4);
+                    if (dieRoll === 0) {
+                        currentPlayer.findRandomMove();
+                    } else {
+                        currentPlayer.findBestMove();
+                    }
                 }
                 else if (currentPlayer.difficulty === "hard") {
                     currentPlayer.findBestMove();
@@ -292,13 +291,12 @@ const gameFlow = (() => {
     }
     const _endGame = (winner) => {
         if (winner) {
-            console.log(`${winner.name} wins!`);
             winner.gamesWon++;
             displayController.highlightWinner(_findWinningStreaks());
         } else {
-            console.log("Tie!");
             gameParts.gamesTied++;
         }
+        displayController.spaces.forEach(space => space.style.pointerEvents = "none");
         gameParts.totalGames++;
         _resetMatchButton.textContent = "Next match";
         displayController.updateInfoDisplay( [_p1, _p2] );

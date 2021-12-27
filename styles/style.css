@@ -17,7 +17,7 @@ body {
     width: 100%;
 }
 
-/*--SIDEBAR START--*/
+/*--HEADER START--*/
 header {
     margin: 2rem 0;
     font-size: 1.6rem;
@@ -52,7 +52,7 @@ header {
     font-size: 1.5rem;
     border: .5px solid var(--clr-sec);
 }
-/*--SIDEBAR END--*/
+/*--HEADER END--*/
 
 /*--GAME BOARD START--*/
 .game-board {
@@ -83,9 +83,7 @@ header {
     border: none;
     background: var(--clr-sec);
     cursor: pointer;
-
     touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
 }
 .space:hover {
     background: var(--clr-pri);
@@ -106,6 +104,7 @@ header {
     height: 5.5rem;
     border: .2rem solid var(--clr-pri);
     font-size: 2rem;
+    text-align: center;
     color: var(--clr-pri);
     background: var(--clr-sec);
     cursor: pointer;
@@ -149,6 +148,9 @@ h2 {
     display: flex;
     align-items: center;
 }
+.radio-wrapper {
+    align-items: flex-start;
+}
 .input-label,
 .radio-label,
 .radio-legend {
@@ -170,13 +172,14 @@ input[type="text"]:focus {
 }
 .warning {
     margin-left: 1rem;
+    font-size: 1.6rem;
+    align-self: center;
+    color: red;
 }
 input[type="radio"] {
     display: none;
 }
-.radio-wrapper {
-    align-items: flex-start;
-}
+
 .radio-label {
     margin-right: 1.5rem;
     padding-bottom: .5rem;

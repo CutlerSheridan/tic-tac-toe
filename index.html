@@ -12,21 +12,21 @@
 <header>
     <div class="players-container">
         <div class="player-info-wrapper">
-            <div class="info-item player-info player-name">p1 name: <span class="info-detail" id="p1-name"></span></div>
-            <div class="info-item player-info player-type">p1 type: <span class="info-detail" id="p1-type"></span></div>
-            <div class="info-item player-info player-score">games won: <span class="info-detail" id="p1-score"></span></div>
+            <div class="info-item player-info player-name">p1.name: <span class="info-detail" id="p1-name"></span></div>
+            <div class="info-item player-info player-type">p1.type: <span class="info-detail" id="p1-type"></span></div>
+            <div class="info-item player-info player-score">games.won: <span class="info-detail" id="p1-score"></span></div>
         </div>
         
         <div class="player-info-wrapper">
-            <div class="info-item player-info player-name">p2 name: <span class="info-detail" id="p2-name"></span></div>
-            <div class="info-item player-info player-type" >p2 type: <span class="info-detail" id="p2-type"></span></div>
-            <div class="info-item player-info player-score">games won: <span class="info-detail" id="p2-score"></span></div>
+            <div class="info-item player-info player-name">p2.name: <span class="info-detail" id="p2-name"></span></div>
+            <div class="info-item player-info player-type" >p2.type: <span class="info-detail" id="p2-type"></span></div>
+            <div class="info-item player-info player-score">games.won: <span class="info-detail" id="p2-score"></span></div>
         </div>
     </div>
 
     <div class="game-info-wrapper">
-        <div class="info-item games-tied">games tied: <span class="info-detail" id="games-tied-num"></span></div>
-        <div class="info-item total-games">total games: <span class="info-detail" id="total-games-num"></span></div>
+        <div class="info-item games-tied">games.tied: <span class="info-detail" id="games-tied-num"></span></div>
+        <div class="info-item total-games">total.games: <span class="info-detail" id="total-games-num"></span></div>
     </div>
 </header>
 
@@ -39,7 +39,7 @@
     <div class="buttons-wrapper">
         <button class="control-button" id="customize">Customize</button>
         <button class="control-button" id="reset-match">Reset match</button>
-        <button class="control-button" id="clear-all-games">Clear all games</button>
+        <button class="control-button" id="clear-all-games">Clear games</button>
     </div>
     <!--CONTROLS END-->
 
@@ -51,7 +51,7 @@
             <h2>Player_1</h2>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p1-name-input">Name: </label>
-                <input type="text" class="text-input" id="p1-name-input" autocomplete="off" required>
+                <input type="text" class="text-input" id="p1-name-input" autocomplete="off" value="Player_1" required>
             </div>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p1-type-input">Computer opponent?</label>
@@ -61,8 +61,11 @@
             <div class="radio-wrapper greyed-out" id="p1-radio-wrapper">
                 <p class="radio-legend">Difficulty:</p>
 
-                <input type="radio" name="p1-difficulty" id="p1-easy" value="easy" checked>
+                <input type="radio" name="p1-difficulty" id="p1-easy" value="easy">
                 <label class="radio-label" for="p1-easy">Easy</label>
+
+                <input type="radio" name="p1-difficulty" id="p1-medium" value="med." checked>
+                <label class="radio-label" for="p1-medium">Med.</label>
 
                 <input type="radio" name="p1-difficulty" id="p1-hard" value="hard">
                 <label class="radio-label" for="p1-hard">Hard</label>
@@ -75,7 +78,7 @@
             <h2>Player_2</h2>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p2-name-input">Name: </label>
-                <input type="text" class="text-input" id="p2-name-input" autocomplete="off" required>
+                <input type="text" class="text-input" id="p2-name-input" autocomplete="off" value="Player_2" required>
             </div>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p2-type-input">Computer opponent?</label>
@@ -85,8 +88,11 @@
             <div class="radio-wrapper" id="p2-radio-wrapper">
                 <p class="radio-legend">Difficulty:</p>
 
-                <input type="radio" name="p2-difficulty" id="p2-easy" value="easy" checked>
+                <input type="radio" name="p2-difficulty" id="p2-easy" value="easy">
                 <label class="radio-label" for="p2-easy">Easy</label>
+
+                <input type="radio" name="p2-difficulty" id="p2-medium" value="med." checked>
+                <label class="radio-label" for="p2-medium">Med.</label>
 
                 <input type="radio" name="p2-difficulty" id="p2-hard" value="hard">
                 <label class="radio-label" for="p2-hard">Hard</label>
