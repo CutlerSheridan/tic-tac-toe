@@ -3,19 +3,22 @@
 Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
-- add media queries for desktop to spread out a bit
 - add a visual indication as to whose turn it is?  maybe just if both players are human?
 #### TO-DO LATER
 ##### Features
 ##### Behavior
 - remember players' info upon refresh
 ##### Style
+- design for desktop such that header will be to the left?
 - add footer
 ##### Other
 - add beep sounds?
 ##### Maybe
 
 #### DONE
+- *v0.6.1*
+- add media queries for desktop to spread out a bit
+- adjust medium difficulty algorithm (now chooses best move 3/5 times and random move 2/5)
 - *v0.6.0*
 - redesign header
 - *v0.5.3*

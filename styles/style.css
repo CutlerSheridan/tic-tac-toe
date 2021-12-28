@@ -7,6 +7,12 @@
     font-family: "VT323", "Press Start 2P", monospace;
     background-color: var(--clr-sec);
 }
+@media only screen and (min-width: 500px) {
+    :root {
+        font-size: 70%;
+        /* --board-space-size: 9rem; */
+    }
+}
 * {
     margin: 0;
     padding: 0;
@@ -38,6 +44,11 @@ header {
     text-align: justify;
     color: var(--clr-pri);
 }
+@media only screen and (min-width: 500px) {
+    .info-item {
+        width: 42rem;
+    }
+}
 .category {
     display: inline-block;
 }
@@ -53,6 +64,11 @@ header {
     display: inline-block;
     margin: 0 1rem;
 }
+@media only screen and (min-width: 500px) {
+    .vs {
+        margin: 0 3rem;
+    }
+}
 /*--HEADER END--*/
 
 /*--GAME BOARD START--*/
@@ -67,6 +83,11 @@ header {
     background: var(--clr-pri);
     user-select: none;
     -webkit-user-select: none;
+}
+@media only screen and (min-width: 500px) {
+    .game-board {
+        margin: 3rem auto;
+    }
 }
 /*--GAME BOARD END--*/
 
@@ -132,6 +153,11 @@ header {
     .control-button:hover {
         background: var(--clr-pri);
         color: var(--clr-sec);
+    }
+}
+@media only screen and (min-width: 500px) {
+    .control-button {
+        margin: .5rem 2rem;
     }
 }
 .control-button:active {

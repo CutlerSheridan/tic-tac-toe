@@ -249,8 +249,8 @@ const gameFlow = (() => {
                     currentPlayer.findRandomMove();
                 }
                 else if (currentPlayer.difficulty === "med.") {
-                    const dieRoll = Math.floor(Math.random() * 4);
-                    if (dieRoll === 0) {
+                    const dieRoll = Math.floor(Math.random() * 5);
+                    if (dieRoll <= 1) {
                         currentPlayer.findRandomMove();
                     } else {
                         currentPlayer.findBestMove();
