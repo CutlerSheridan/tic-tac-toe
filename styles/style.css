@@ -21,37 +21,37 @@ body {
 /*--HEADER START--*/
 header {
     margin: 2rem 0;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
 }
-.players-container {
+.player-info-wrapper {
     display: flex;
-    justify-content: space-around;
-}
-.game-info-wrapper {
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
 }
 .info-item {
-    width: 18rem;
+    width: 35rem;
     height: 3rem;
     padding-left: .5rem;
+    display: flex;
+    justify-content: space-between;
     line-height: 3rem;
     text-align: justify;
-    background: var(--clr-pri);
+    color: var(--clr-pri);
 }
-/* this is a hack to justify a single line */
-.info-item::after {
-    content: "";
+.category {
     display: inline-block;
-    width: 100%;
 }
 .info-detail {
-    width: 9rem;
+    width: 10rem;
     display: inline-block;
     text-align: center;
-    font-size: 1.5rem;
-    border: .5px solid var(--clr-sec);
+    font-size: 2rem;
+    /* background: var(--clr-pri); */
+    color: var(--clr-pri);
+}
+.vs {
+    display: inline-block;
+    margin: 0 1rem;
 }
 /*--HEADER END--*/
 
@@ -91,6 +91,24 @@ header {
     color: var(--clr-sec);
 }
 /*--GAME SPACE END--*/
+
+/* GAME TOTALS START */
+.game-info-wrapper {
+    padding: 0 1rem;
+    margin: 1rem auto 1.5rem auto;
+    width: 38rem;
+    display: flex;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+.games-info {
+    width: 16rem;
+    font-size: inherit;
+}
+.game-detail {
+    width: 3rem;
+}
+/* GAME TOTALS END */
 
 /*--CONTROLS START--*/
 .buttons-wrapper {

@@ -10,30 +10,45 @@
 </head>
 
 <header>
-    <div class="players-container">
         <div class="player-info-wrapper">
-            <div class="info-item player-info player-name">P1.name: <span class="info-detail" id="p1-name"></span></div>
-            <div class="info-item player-info player-type">P1.type: <span class="info-detail" id="p1-type"></span></div>
-            <div class="info-item player-info player-score">Games.won: <span class="info-detail" id="p1-score"></span></div>
+            <div class="info-item player-info player-name">
+                <span class="category">Players:</span>
+                <div class="data-wrapper">
+                    <span class="info-detail" id="p1-name"></span>
+                    <span class="vs"> vs. </span>
+                    <span class="info-detail" id="p2-name"></span>
+                </div> 
+            </div>
+            <div class="info-item player-info player-type">
+                <span class="category">Player.types:</span> 
+                <div class="data-wrapper">
+                    <span class="info-detail" id="p1-type"></span>
+                    <span class="vs"> vs. </span>
+                    <span class="info-detail" id="p2-type"></span>
+                </div>
+            </div>
+            <div class="info-item player-info player-score">
+                <span class="category">Games.won</span> 
+                <div class="data-wrapper">
+                    <span class="info-detail" id="p1-score"></span>
+                    <span class="vs"> vs. </span>
+                    <span class="info-detail" id="p2-score"></span>
+                </div>
+            </div>
         </div>
-        
-        <div class="player-info-wrapper">
-            <div class="info-item player-info player-name">P2.name: <span class="info-detail" id="p2-name"></span></div>
-            <div class="info-item player-info player-type" >P2.type: <span class="info-detail" id="p2-type"></span></div>
-            <div class="info-item player-info player-score">Games.won: <span class="info-detail" id="p2-score"></span></div>
-        </div>
-    </div>
-
-    <div class="game-info-wrapper">
-        <div class="info-item games-tied">Games.tied: <span class="info-detail" id="games-tied-num"></span></div>
-        <div class="info-item total-games">Total.games: <span class="info-detail" id="total-games-num"></span></div>
-    </div>
 </header>
 
 <body>
     <!--GAME START-->
     <div class="game-board"></div>
     <!--GAME END-->
+
+    <!-- GAME TOTALS START -->
+    <div class="game-info-wrapper">
+        <div class="info-item games-info">Games.tied: <span class="info-detail game-detail" id="games-tied-num"></span></div>
+        <div class="info-item games-info">Total.games: <span class="info-detail game-detail" id="total-games-num"></span></div>
+    </div>
+    <!-- GAME TOTALS END -->
 
     <!--CONTROLS START-->
     <div class="buttons-wrapper">

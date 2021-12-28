@@ -3,12 +3,11 @@
 Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
-- should p1 and p2 groups go to the left and right on desktop, top and bottom on mobile?
-    - or maybe all at the top but like, a heading for player names then the next line is "name    vs.    name", et cetera, then buttons can go below the grid
+- add media queries for desktop to spread out a bit
+- add a visual indication as to whose turn it is?  maybe just if both players are human?
 #### TO-DO LATER
 ##### Features
 ##### Behavior
-- add a visual indication as to whose turn it is?  maybe just if both players are human?
 - remember players' info upon refresh
 ##### Style
 - add footer
@@ -17,6 +16,8 @@ Play tic-tac-toe against a human or computer opponent!  Choose the difficulty se
 ##### Maybe
 
 #### DONE
+- *v0.6.0*
+- redesign header
 - *v0.5.3*
 - adjust checkbox label margin-right
 - *v0.5.2*
