@@ -17,6 +17,8 @@ Play tic-tac-toe against a human or computer opponent!  Choose the difficulty se
 ##### Maybe
 
 #### DONE
+- *v0.5.3*
+- adjust checkbox label margin-right
 - *v0.5.2*
 - fix game reset triggers so changing type or difficulty  on p1 and on p2 doesn't fuck up the start of the next turn if p1 is computer-controlled
 - style checkboxes in form

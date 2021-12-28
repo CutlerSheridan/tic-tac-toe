@@ -153,7 +153,6 @@ h2 {
     align-items: flex-start;
 }
 .input-label,
-.radio-label,
 .radio-legend {
     margin-right: 1rem;
 }
@@ -173,6 +172,9 @@ input[type="text"]:focus {
 }
 input[type="checkbox"] {
     display: none;
+}
+.checkbox-label {
+    margin-right: 1.5rem;
 }
 input[type="checkbox"] + .styled-checkbox {
     position: relative;
