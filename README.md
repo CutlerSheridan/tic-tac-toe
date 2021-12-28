@@ -3,23 +3,25 @@
 Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
 
 #### TO-DO NEXT
-- fix game reset triggers so changing type or difficulty  on p1 and on p2 doesn't fuck up the start of the next turn if p1 is computer-controlled
+- should p1 and p2 groups go to the left and right on desktop, top and bottom on mobile?
+    - or maybe all at the top but like, a heading for player names then the next line is "name    vs.    name", et cetera, then buttons can go below the grid
 #### TO-DO LATER
 ##### Features
 ##### Behavior
+- add a visual indication as to whose turn it is?  maybe just if both players are human?
 - remember players' info upon refresh
 ##### Style
-- style checkboxes in form
-- should p1 and p2 groups go to the left and right on desktop, top and bottom on mobile?
-    - or maybe all at the top but like, a heading for player names then the next line is "name    vs.    name", et cetera, then buttons can go below the grid
-- add a visual indication as to whose turn it is?  maybe just if both players are human?
-- handle long names
 - add footer
 ##### Other
 - add beep sounds?
 ##### Maybe
 
 #### DONE
+- *v0.5.2*
+- fix game reset triggers so changing type or difficulty  on p1 and on p2 doesn't fuck up the start of the next turn if p1 is computer-controlled
+- style checkboxes in form
+- adjust spacing of form elements
+- handle long names
 - *v0.5.1*
 - add medium AI that, 75% of time, chooses optimal move, 25% of time chooses random move
 - make "resets games" warning red

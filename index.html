@@ -12,21 +12,21 @@
 <header>
     <div class="players-container">
         <div class="player-info-wrapper">
-            <div class="info-item player-info player-name">p1.name: <span class="info-detail" id="p1-name"></span></div>
-            <div class="info-item player-info player-type">p1.type: <span class="info-detail" id="p1-type"></span></div>
-            <div class="info-item player-info player-score">games.won: <span class="info-detail" id="p1-score"></span></div>
+            <div class="info-item player-info player-name">P1.name: <span class="info-detail" id="p1-name"></span></div>
+            <div class="info-item player-info player-type">P1.type: <span class="info-detail" id="p1-type"></span></div>
+            <div class="info-item player-info player-score">Games.won: <span class="info-detail" id="p1-score"></span></div>
         </div>
         
         <div class="player-info-wrapper">
-            <div class="info-item player-info player-name">p2.name: <span class="info-detail" id="p2-name"></span></div>
-            <div class="info-item player-info player-type" >p2.type: <span class="info-detail" id="p2-type"></span></div>
-            <div class="info-item player-info player-score">games.won: <span class="info-detail" id="p2-score"></span></div>
+            <div class="info-item player-info player-name">P2.name: <span class="info-detail" id="p2-name"></span></div>
+            <div class="info-item player-info player-type" >P2.type: <span class="info-detail" id="p2-type"></span></div>
+            <div class="info-item player-info player-score">Games.won: <span class="info-detail" id="p2-score"></span></div>
         </div>
     </div>
 
     <div class="game-info-wrapper">
-        <div class="info-item games-tied">games.tied: <span class="info-detail" id="games-tied-num"></span></div>
-        <div class="info-item total-games">total.games: <span class="info-detail" id="total-games-num"></span></div>
+        <div class="info-item games-tied">Games.tied: <span class="info-detail" id="games-tied-num"></span></div>
+        <div class="info-item total-games">Total.games: <span class="info-detail" id="total-games-num"></span></div>
     </div>
 </header>
 
@@ -48,14 +48,15 @@
         <h1>CustomizeGame();</h1>
 
         <div class="player-form-group">
-            <h2>Player_1</h2>
+            <h2>P1.data</h2>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p1-name-input">Name: </label>
-                <input type="text" class="text-input" id="p1-name-input" autocomplete="off" value="Player_1" required>
+                <input type="text" class="text-input" id="p1-name-input" value="Player_1" maxlength="14" autocomplete="off" required>
             </div>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p1-type-input">Computer opponent?</label>
                 <input type="checkbox" id="p1-type-input">
+                <label class="styled-checkbox" for="p1-type-input"></label>
                 <div class="warning invisible" id="p1-type-warning">(Resets games)</div>
             </div>
             <div class="radio-wrapper greyed-out" id="p1-radio-wrapper">
@@ -75,14 +76,15 @@
         </div>
         
         <div class="player-form-group">
-            <h2>Player_2</h2>
+            <h2>P2.data</h2>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p2-name-input">Name: </label>
-                <input type="text" class="text-input" id="p2-name-input" autocomplete="off" value="Player_2" required>
+                <input type="text" class="text-input" id="p2-name-input" value="Player_2" maxlength="14" autocomplete="off" required>
             </div>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p2-type-input">Computer opponent?</label>
                 <input type="checkbox" id="p2-type-input" checked>
+                <label class="styled-checkbox" for="p2-type-input"></label>
                 <div class="warning invisible" id="p2-type-warning">(Resets games)</div>
             </div>
             <div class="radio-wrapper" id="p2-radio-wrapper">

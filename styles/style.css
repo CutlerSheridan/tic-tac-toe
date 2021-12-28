@@ -1,6 +1,7 @@
 :root {
     --board-space-size: 10rem;
-    --clr-pri: lawngreen;
+    --clr-pri: rgb(124,252,0);
+    --clr-sec-nums: 22,22,22;
     --clr-sec: rgb(22,22,22);
     font-size: 62.5%;
     font-family: "VT323", "Press Start 2P", monospace;
@@ -137,14 +138,14 @@ form {
     transition: all .2s;
 }
 .player-form-group {
-    margin: 1.6rem 0 2.2rem 0;
+    margin: 2.6rem 0;
 }
 h2 {
-    margin-bottom: .5rem;
+    margin-bottom: 1.2rem;
 }
 .label-input-wrapper,
 .radio-wrapper {
-    margin-bottom: 1.3rem;
+    margin-bottom: 2rem;
     display: flex;
     align-items: center;
 }
@@ -170,6 +171,28 @@ input[type="text"]:focus {
     outline: none;
     border: .2rem solid var(--clr-pri);
 }
+input[type="checkbox"] {
+    display: none;
+}
+input[type="checkbox"] + .styled-checkbox {
+    position: relative;
+    width: 1.6rem;
+    height: 1.6rem;
+    border: .2rem solid var(--clr-pri);
+    font-size: 1.6rem;
+}
+input[type="checkbox"]:checked + .styled-checkbox::after {
+    position: absolute;
+    top: -.2rem;
+    left: -.2rem;
+    content: "";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    background: var(--clr-pri);
+}
 .warning {
     margin-left: 1rem;
     font-size: 1.6rem;
@@ -179,7 +202,6 @@ input[type="text"]:focus {
 input[type="radio"] {
     display: none;
 }
-
 .radio-label {
     margin-right: 1.5rem;
     padding-bottom: .5rem;

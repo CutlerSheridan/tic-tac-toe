@@ -401,13 +401,10 @@ const gameFlow = (() => {
             }
         } 
     }
-    const _validateForm = (e) => {
-        e.preventDefault();
-        // if player type is computer, make sure difficulty is selected
-    }
     const _updatePlayersFromForm = (e) => {
         e.preventDefault();
         const playerArray = [_p1, _p2];
+        let resetIsNeeded = false;
         for (let i = 1; i < 3; i++) {
             playerArray[i - 1].name = form.elements[`p${i}-name-input`].value;
             pWasComp = playerArray[i - 1].isComp;
@@ -416,8 +413,11 @@ const gameFlow = (() => {
             playerArray[i - 1].difficulty = form.elements[`p${i}-difficulty`].value;
             if (pWasComp !== form.elements[`p${i}-type-input`].checked ||
             pOldDifficulty !== form.elements[`p${i}-difficulty`].value) {
-                clearAllGames();
+                resetIsNeeded = true;
             }
+        }
+        if (resetIsNeeded) {
+            clearAllGames();
         }
         
         displayController.updateInfoDisplay(playerArray);
