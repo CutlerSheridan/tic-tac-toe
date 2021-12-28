@@ -213,10 +213,19 @@ const displayController = (() => {
             }
         }
     }
+    const togglePlayerHighlight = (playerNum) => {
+        const playerNames = document.querySelectorAll(".player-name");
+        playerNames.forEach(playerName => {
+            playerName.style.background = "transparent";
+            playerName.style.color = "var(--clr-pri)";
+        });
+        playerNames[playerNum - 1].style.background = "var(--clr-pri)";
+        playerNames[playerNum - 1].style.color = "var(--clr-sec)";
+    }
     const customizeButton = document.getElementById("customize");
     customizeButton.addEventListener("click", toggleFormVisibility);
 
-    return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark, highlightWinner, unhighlightAll, toggleFormVisibility};
+    return {clearBoardDisplay, spaces, updateInfoDisplay, displayMark, highlightWinner, unhighlightAll, toggleFormVisibility, togglePlayerHighlight};
 })();
 
 const gameFlow = (() => {
@@ -264,6 +273,7 @@ const gameFlow = (() => {
         } else {
             displayController.spaces.forEach(space => space.addEventListener("click", _endTurn));
         }
+        displayController.togglePlayerHighlight(_isP1Turn ? 1 : 2);
     };
     const _endTurn = (e) => {
         if (e) {

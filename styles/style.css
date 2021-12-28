@@ -57,8 +57,11 @@ header {
     display: inline-block;
     text-align: center;
     font-size: 2rem;
-    /* background: var(--clr-pri); */
     color: var(--clr-pri);
+}
+.active-player {
+    background: var(--clr-pri);
+    color: var(--clr-sec);
 }
 .vs {
     display: inline-block;
@@ -263,7 +266,20 @@ input[type="radio"]:checked + .radio-label {
     border-bottom-color: grey;
     pointer-events: none;
 }
+button[type="submit"] {
+    margin-left: 0;
+}
 /*--FORM END--*/
 
 /*--FOOTER START--*/
+footer {
+    margin-top: 2rem;
+    font-size: 1.4rem;
+    letter-spacing: .15rem;
+}
+a {
+    color: var(--clr-pri);
+    text-decoration: .2rem solid underline;
+    text-underline-offset: .3rem;;
+}
 /*--FOOTER END--*/

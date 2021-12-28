@@ -11,15 +11,15 @@
 
 <header>
         <div class="player-info-wrapper">
-            <div class="info-item player-info player-name">
+            <div class="info-item player-info">
                 <span class="category">Players:</span>
                 <div class="data-wrapper">
-                    <span class="info-detail" id="p1-name"></span>
+                    <span class="info-detail player-name" id="p1-name"></span>
                     <span class="vs"> vs. </span>
-                    <span class="info-detail" id="p2-name"></span>
+                    <span class="info-detail player-name" id="p2-name"></span>
                 </div> 
             </div>
-            <div class="info-item player-info player-type">
+            <div class="info-item player-info">
                 <span class="category">Player.type:</span> 
                 <div class="data-wrapper">
                     <span class="info-detail" id="p1-type"></span>
@@ -27,7 +27,7 @@
                     <span class="info-detail" id="p2-type"></span>
                 </div>
             </div>
-            <div class="info-item player-info player-score">
+            <div class="info-item player-info">
                 <span class="category">Games.won</span> 
                 <div class="data-wrapper">
                     <span class="info-detail" id="p1-score"></span>
@@ -66,7 +66,7 @@
             <h2>P1.data</h2>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p1-name-input">Name: </label>
-                <input type="text" class="text-input" id="p1-name-input" value="Player_1" maxlength="14" autocomplete="off" required>
+                <input type="text" class="text-input" id="p1-name-input" value="Player_1" maxlength="13" autocomplete="off" required>
             </div>
             <div class="label-input-wrapper">
                 <label class="input-label checkbox-label" for="p1-type-input">Computer opponent?</label>
@@ -94,7 +94,7 @@
             <h2>P2.data</h2>
             <div class="label-input-wrapper">
                 <label class="input-label" for="p2-name-input">Name: </label>
-                <input type="text" class="text-input" id="p2-name-input" value="Player_2" maxlength="14" autocomplete="off" required>
+                <input type="text" class="text-input" id="p2-name-input" value="Player_2" maxlength="13" autocomplete="off" required>
             </div>
             <div class="label-input-wrapper">
                 <label class="input-label checkbox-label" for="p2-type-input">Computer opponent?</label>
@@ -119,6 +119,10 @@
         </div>
 
         <button type="submit" class="control-button">Submit</button>
+
+        <footer>
+            Made by Cutler Sheridan.<br>See more <a href="https://cutlersheridan.github.io/portfolio/">here</a>.
+        </footer>
     </form>
     <!-- FORM END -->
 

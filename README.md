@@ -1,21 +1,25 @@
 # Tic-Tac-Toe
 ## A simple tic-tac-toe game
-Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Work in progress.
+Play tic-tac-toe against a human or computer opponent!  Choose the difficulty setting!  Use a desktop or mobile!  Have the time of you life!
 
 #### TO-DO NEXT
-- add a visual indication as to whose turn it is?  maybe just if both players are human?
+- remember players' info upon refresh
+- should turn indicator only trigger if it's a human vs. human game?
 #### TO-DO LATER
 ##### Features
 ##### Behavior
-- remember players' info upon refresh
 ##### Style
 - design for desktop such that header will be to the left?
-- add footer
+- adjust green?
 ##### Other
 - add beep sounds?
 ##### Maybe
 
 #### DONE
+- *v1.0.0*
+- add footer
+- reduce max name length by 1
+- add a visual indication as to whose turn it is
 - *v0.6.1*
 - add media queries for desktop to spread out a bit
 - adjust medium difficulty algorithm (now chooses best move 3/5 times and random move 2/5)
